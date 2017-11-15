@@ -16,7 +16,7 @@ public interface HotelRepository extends MongoRepository<Hotel, String>, HotelCu
 
 	public List<Hotel> findByPricePerNightLessThan(int maxPrice);
 
-	@Cacheable
+	@Cacheable()
 	@Query(value = "{address.city:?0}")
 	public List<Hotel> findByCity(String city);
 
