@@ -2,6 +2,8 @@ package com.demo.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +25,8 @@ import com.demo.repository.ReviewRepository;
 @RestController
 @RequestMapping("/hotels")
 public class HotelController {
+
+	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
 
 	@Autowired
 	private HotelRepository hotelRepository;
@@ -48,14 +52,14 @@ public class HotelController {
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> insert(@RequestBody Hotel hotel) {
 		Hotel insertedHotel = this.hotelRepository.insert(hotel);
-		System.out.println("Inserted Hotel : " + insertedHotel.getName() + " - " + insertedHotel.getId());
+		log.info("Inserted Hotel : " + insertedHotel.getName() + " - " + insertedHotel.getId());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping
 	public ResponseEntity<Void> update(@RequestBody Hotel hotel) {
 		Hotel updatedHotel = this.hotelRepository.save(hotel); // upsert
-		System.out.println("Updated Hotel : " + updatedHotel.getName() + " - " + updatedHotel.getId());
+		log.info("Updated Hotel : ", updatedHotel.getName() + " - " + updatedHotel.getId());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -68,28 +72,28 @@ public class HotelController {
 	@GetMapping("/city/{city}")
 	public ResponseEntity<List<Hotel>> findByCity(@PathVariable(name = "city") String city) {
 		List<Hotel> list = this.hotelRepository.findByAddressCityIgnoreCase(city);
-		System.out.println("ByCity : " + list);
+		log.info("ByCity : ", list);
 		return new ResponseEntity<>(list, HttpStatus.FOUND);
 	}
 
 	@GetMapping("/user/{user}")
 	public ResponseEntity<List<Hotel>> findByRating(@PathVariable(name = "user") String user) {
 		List<Hotel> list = this.hotelRepository.findByCommentUserName(user);
-		System.out.println("By userName : " + list);
+		log.info("By userName : ", list);
 		return new ResponseEntity<>(list, HttpStatus.FOUND);
 	}
 
 	@GetMapping("/rating/{rating}")
 	public ResponseEntity<List<Hotel>> findByReviewRating(@PathVariable(name = "rating") int rating) {
 		List<Hotel> list = this.hotelRepository.findByRatingGreaterThan(rating);
-		System.out.println("Byrating : " + list);
+		log.info("Byrating : ", list);
 		return new ResponseEntity<>(list, HttpStatus.FOUND);
 	}
 
 	@PostMapping("/review/")
 	public ResponseEntity<Void> insertReview(@RequestBody Review review) {
 		Review insertedHotel = this.reviewRepository.save(review);
-		System.out.println("Inserted Hotel : " + insertedHotel.getUserName() + " - " + insertedHotel.getId());
+		log.info("Inserted Hotel : ", insertedHotel.getUserName() + " - " + insertedHotel.getId());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
