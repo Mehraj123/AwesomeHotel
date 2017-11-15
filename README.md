@@ -1,2 +1,2 @@
 # SpringBootWithMongo
-All R&amp;d will be here
+All R&amp;D will be here
