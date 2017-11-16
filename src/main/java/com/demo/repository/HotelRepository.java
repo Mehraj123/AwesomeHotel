@@ -25,4 +25,5 @@ public interface HotelRepository extends MongoRepository<Hotel, String>, HotelCu
 
 	@Cacheable
 	public List<Hotel> findByReviewsUserName(String userName);
+
 }

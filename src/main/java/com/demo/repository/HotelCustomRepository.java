@@ -11,5 +11,8 @@ import com.demo.entity.Hotel;
 public interface HotelCustomRepository {
 
 	public List<Hotel> findByCommentUserName(String userName);
+
 	public List<Hotel> findByRatingGreaterThan(int rating);
+
+	public List<Hotel> findByHotelNameStartsWith(String startsWith);
 }

@@ -97,4 +97,10 @@ public class HotelController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
+	@GetMapping("/like/{startswith}")
+	public ResponseEntity<List<Hotel>> findByNameLike(@PathVariable(name = "startswith") String startswith) {
+		List<Hotel> list = this.hotelRepository.findByHotelNameStartsWith(startswith);
+		log.info("startsWith : ", list);
+		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	}
 }
