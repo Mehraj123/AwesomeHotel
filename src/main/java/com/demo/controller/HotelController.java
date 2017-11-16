@@ -103,4 +103,11 @@ public class HotelController {
 		log.info("startsWith : ", list);
 		return new ResponseEntity<>(list, HttpStatus.FOUND);
 	}
+
+	@GetMapping("/random/{size}")
+	public ResponseEntity<List<Hotel>> getRandom(@PathVariable(name = "size") int size) {
+		List<Hotel> list = this.hotelRepository.getRandomDocument(size);
+		log.info("Random Documents : {}", list);
+		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	}
 }

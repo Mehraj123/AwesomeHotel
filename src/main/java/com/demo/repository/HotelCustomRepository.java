@@ -15,4 +15,7 @@ public interface HotelCustomRepository {
 	public List<Hotel> findByRatingGreaterThan(int rating);
 
 	public List<Hotel> findByHotelNameStartsWith(String startsWith);
+
+	public List<Hotel> getRandomDocument(int size);
+
 }
