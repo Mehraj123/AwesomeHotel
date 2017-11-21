@@ -1,17 +1,18 @@
 package com.demo.model;
 
 /**
- * @author user
+ * @author Mehraj Malik
  *
  */
 public class Employee {
-	
+
 	private String id;
 	private String name;
 	private String role;
 	private String salary;
-	
-	public Employee(){}
+
+	public Employee() {
+	}
 
 	public Employee(String id, String name, String role, String salary) {
 		super();
@@ -57,7 +58,5 @@ public class Employee {
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", role=" + role + ", salary=" + salary + "]";
 	}
-	
-	
-	
+
 }
