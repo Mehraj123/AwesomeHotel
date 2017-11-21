@@ -6,6 +6,6 @@ package com.demo.observer;
  * @author Mehraj Malik
  * @version 1.0
  */
-public interface Observer {
-	public void update(Subject s);
+public interface Observer<T> {
+	public void update(Subject<T> subject, T data);
 }

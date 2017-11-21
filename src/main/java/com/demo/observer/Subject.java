@@ -6,11 +6,11 @@ package com.demo.observer;
  * @author Mehraj Malik
  * @version 1.0
  */
-public interface Subject {
+public interface Subject<T> {
 
-	public boolean registerObserver(Observer o);
+	public boolean registerObserver(Observer<T> observer);
 
-	public boolean removeObserver(Observer o);
+	public boolean removeObserver(Observer<T> observer);
 
-	public void notifyAllObservers();
+	public void notifyAllObservers(T data);
 }

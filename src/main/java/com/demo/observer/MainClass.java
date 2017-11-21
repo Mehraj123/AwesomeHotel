@@ -13,7 +13,12 @@ public class MainClass {
 		hh.registerObserver(new JobSeeker("El"));
 
 		// Each time, a new job is added, all registered job seekers will get noticed.
-		hh.addJob("Google Job");
-		hh.addJob("Yahoo Job");
+		Job google = new Job("Google");
+		Job yahoo = new Job("Yahoo");
+		hh.addJob(google);
+		hh.addJob(yahoo);
+		hh.registerObserver(new JobSeeker("Rocky"));
+		Job hcl = new Job("HCL");
+		hh.addJob(hcl);
 	}
 }

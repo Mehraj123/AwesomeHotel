@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
  * @author Mehraj Malik
  *
  */
-public class JobSeeker implements Observer {
+public class JobSeeker implements Observer<Job> {
 
 	private static final Logger log = LoggerFactory.getLogger(JobSeeker.class);
 
@@ -18,9 +18,8 @@ public class JobSeeker implements Observer {
 	}
 
 	@Override
-	public void update(Subject s) {
-		log.info("Got notified {} ", this.name);
-		// print job list
-		log.info("Subject {} ", s);
+	public void update(Subject<Job> subject, Job job) {
+		log.info("{} got notified for {}", name, job);
 	}
+
 }
