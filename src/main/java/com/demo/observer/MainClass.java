@@ -17,7 +17,7 @@ public class MainClass {
 		Job yahoo = new Job("Yahoo");
 		hh.addJob(google);
 		hh.addJob(yahoo);
-		hh.registerObserver(new JobSeeker("Rocky"));
+		hh.registerObserver(new JobSeeker("Lucas"));
 		Job hcl = new Job("HCL");
 		hh.addJob(hcl);
 	}
