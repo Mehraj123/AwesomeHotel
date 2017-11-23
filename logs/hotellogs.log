@@ -1,0 +1,432 @@
+INFO  [restartedMain] c.d.MongoWithBootApplication - Starting MongoWithBootApplication on KELLGGNCPU0249 with PID 8985 (/home/user/Desktop/MYGIT/SpringBootWithMongo/target/classes started by user in /home/user/Desktop/MYGIT/SpringBootWithMongo)
+INFO  [restartedMain] c.d.MongoWithBootApplication - No active profile set, falling back to default profiles: default
+INFO  [restartedMain] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:12:29 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [class org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$4dd18fa4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8080 (http)
+INFO  [restartedMain] o.a.c.c.StandardService - Starting service Tomcat
+INFO  [restartedMain] o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.11
+INFO  [localhost-startStop-1] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+INFO  [localhost-startStop-1] o.s.w.c.ContextLoader - Root WebApplicationContext: initialization completed in 896 ms
+INFO  [localhost-startStop-1] o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+INFO  [restartedMain] o.m.d.cluster - Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+INFO  [restartedMain] o.m.d.cluster - Adding discovered server localhost:27017 to client view of cluster
+INFO  [cluster-ClusterId{value='5a16c236c70ff623197f9581', description='null'}-localhost:27017] o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:83}] to localhost:27017
+INFO  [cluster-ClusterId{value='5a16c236c70ff623197f9581', description='null'}-localhost:27017] o.m.d.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 10]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=410528}
+INFO  [cluster-ClusterId{value='5a16c236c70ff623197f9581', description='null'}-localhost:27017] o.m.d.cluster - Discovered cluster type of STANDALONE
+INFO  [restartedMain] o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:84}] to localhost:27017
+WARN  [restartedMain] n.s.e.c.CacheConfiguration - Configuration problem for cache hotelCache: MaxEntriesLocalHeap equal or greater than MaxEntriesLocalDisk. This will result in useless disk storage.
+INFO  [restartedMain] o.s.c.e.EhCacheManagerFactoryBean - Initializing EhCache CacheManager
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:12:29 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/abc]}" onto public java.lang.String com.demo.controller.ABCController.sayHi()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/names],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.get()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/update/{name}],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.update(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/],methods=[DELETE]}" onto public void com.demo.controller.CacheController.clear()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.mv.HotelMV>> com.demo.controller.HotelController.getAllHotels()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/price/{maxPrice}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByPricePErNight(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.deleteById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/city/{city}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByCity(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/user/{user}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByRating(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/rating/{rating}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByReviewRating(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/review/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insertReview(com.demo.entity.Review)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/like/{startswith}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByNameLike(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/random/{size}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.getRandom(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.demo.entity.Hotel> com.demo.controller.HotelController.findById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.update(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insert(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/send],methods=[GET]}" onto public void com.demo.controller.MailSenderController.sendSimpleMessage()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/]}" onto public java.lang.String com.demo.controller.ViewController.index(org.springframework.ui.Model)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionTranslator
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+INFO  [restartedMain] o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+INFO  [restartedMain] c.d.u.DBInitializer - DB Initialized
+INFO  [restartedMain] c.d.MongoWithBootApplication - Started MongoWithBootApplication in 2.45 seconds (JVM running for 2.828)
+INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 9 ms
+INFO  [http-nio-8080-exec-2] c.d.c.HotelController - Finding all hotels : found 3
+INFO  [http-nio-8080-exec-3] c.d.c.HotelController - Finding all hotels : found 3
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:12:29 IST 2017]; root of context hierarchy
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.c.e.EhCacheManagerFactoryBean - Shutting down EhCache CacheManager
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.m.d.connection - Closed connection [connectionId{localValue:2, serverValue:84}] to localhost:27017 because the pool has been closed.
+INFO  [restartedMain] c.d.MongoWithBootApplication - Starting MongoWithBootApplication on KELLGGNCPU0249 with PID 11477 (/home/user/Desktop/MYGIT/SpringBootWithMongo/target/classes started by user in /home/user/Desktop/MYGIT/SpringBootWithMongo)
+INFO  [restartedMain] c.d.MongoWithBootApplication - No active profile set, falling back to default profiles: default
+INFO  [restartedMain] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:50:43 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [class org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$da6c7778] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8080 (http)
+INFO  [restartedMain] o.a.c.c.StandardService - Starting service Tomcat
+INFO  [restartedMain] o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.11
+INFO  [localhost-startStop-1] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+INFO  [localhost-startStop-1] o.s.w.c.ContextLoader - Root WebApplicationContext: initialization completed in 1001 ms
+INFO  [localhost-startStop-1] o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+INFO  [restartedMain] o.m.d.cluster - Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+INFO  [restartedMain] o.m.d.cluster - Adding discovered server localhost:27017 to client view of cluster
+INFO  [cluster-ClusterId{value='5a16cb2dc70ff62cd5900ada', description='null'}-localhost:27017] o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:85}] to localhost:27017
+INFO  [cluster-ClusterId{value='5a16cb2dc70ff62cd5900ada', description='null'}-localhost:27017] o.m.d.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 10]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=387876}
+INFO  [cluster-ClusterId{value='5a16cb2dc70ff62cd5900ada', description='null'}-localhost:27017] o.m.d.cluster - Discovered cluster type of STANDALONE
+INFO  [restartedMain] o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:86}] to localhost:27017
+WARN  [restartedMain] n.s.e.c.CacheConfiguration - Configuration problem for cache hotelCache: MaxEntriesLocalHeap equal or greater than MaxEntriesLocalDisk. This will result in useless disk storage.
+INFO  [restartedMain] o.s.c.e.EhCacheManagerFactoryBean - Initializing EhCache CacheManager
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:50:43 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/abc]}" onto public java.lang.String com.demo.controller.ABCController.sayHi()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/names],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.get()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/update/{name}],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.update(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/],methods=[DELETE]}" onto public void com.demo.controller.CacheController.clear()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.mv.HotelMV>> com.demo.controller.HotelController.getAllHotels()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/price/{maxPrice}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByPricePErNight(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.deleteById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/city/{city}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByCity(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/user/{user}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByRating(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/rating/{rating}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByReviewRating(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/review/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insertReview(com.demo.entity.Review)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/like/{startswith}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByNameLike(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/random/{size}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.getRandom(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.demo.mv.HotelMV> com.demo.controller.HotelController.findById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.update(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insert(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/send],methods=[GET]}" onto public void com.demo.controller.MailSenderController.sendSimpleMessage()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/]}" onto public java.lang.String com.demo.controller.ViewController.index(org.springframework.ui.Model)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionTranslator
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+INFO  [restartedMain] o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+INFO  [restartedMain] c.d.u.DBInitializer - DB Initialized
+INFO  [restartedMain] c.d.MongoWithBootApplication - Started MongoWithBootApplication in 2.586 seconds (JVM running for 3.001)
+INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 9 ms
+INFO  [http-nio-8080-exec-2] c.d.c.HotelController - Finding all hotels : found 3
+ERROR [http-nio-8080-exec-3] c.d.e.ExceptionTranslator - Custom Exception cought :- 
+com.demo.error.CustomParameterizedException: HotelException
+	at com.demo.error.HotelExceptionSupplier.lambda$0(HotelExceptionSupplier.java:14)
+	at com.demo.service.impl.HotelServiceImpl.getById(HotelServiceImpl.java:47)
+	at com.demo.controller.HotelController.findById(HotelController.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+WARN  [http-nio-8080-exec-3] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved exception caused by Handler execution: com.demo.error.CustomParameterizedException: HotelException
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:50:43 IST 2017]; root of context hierarchy
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.c.e.EhCacheManagerFactoryBean - Shutting down EhCache CacheManager
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.m.d.connection - Closed connection [connectionId{localValue:2, serverValue:86}] to localhost:27017 because the pool has been closed.
+INFO  [restartedMain] c.d.MongoWithBootApplication - Starting MongoWithBootApplication on KELLGGNCPU0249 with PID 11610 (/home/user/Desktop/MYGIT/SpringBootWithMongo/target/classes started by user in /home/user/Desktop/MYGIT/SpringBootWithMongo)
+INFO  [restartedMain] c.d.MongoWithBootApplication - No active profile set, falling back to default profiles: default
+INFO  [restartedMain] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:52:03 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [class org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$c7ec6607] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8080 (http)
+INFO  [restartedMain] o.a.c.c.StandardService - Starting service Tomcat
+INFO  [restartedMain] o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.11
+INFO  [localhost-startStop-1] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+INFO  [localhost-startStop-1] o.s.w.c.ContextLoader - Root WebApplicationContext: initialization completed in 949 ms
+INFO  [localhost-startStop-1] o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+INFO  [restartedMain] o.m.d.cluster - Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+INFO  [restartedMain] o.m.d.cluster - Adding discovered server localhost:27017 to client view of cluster
+INFO  [cluster-ClusterId{value='5a16cb7cc70ff62d5aa8ee94', description='null'}-localhost:27017] o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:87}] to localhost:27017
+INFO  [cluster-ClusterId{value='5a16cb7cc70ff62d5aa8ee94', description='null'}-localhost:27017] o.m.d.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 10]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=397938}
+INFO  [cluster-ClusterId{value='5a16cb7cc70ff62d5aa8ee94', description='null'}-localhost:27017] o.m.d.cluster - Discovered cluster type of STANDALONE
+INFO  [restartedMain] o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:88}] to localhost:27017
+WARN  [restartedMain] n.s.e.c.CacheConfiguration - Configuration problem for cache hotelCache: MaxEntriesLocalHeap equal or greater than MaxEntriesLocalDisk. This will result in useless disk storage.
+INFO  [restartedMain] o.s.c.e.EhCacheManagerFactoryBean - Initializing EhCache CacheManager
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:52:03 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/abc]}" onto public java.lang.String com.demo.controller.ABCController.sayHi()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/names],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.get()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/update/{name}],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.update(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/],methods=[DELETE]}" onto public void com.demo.controller.CacheController.clear()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.mv.HotelMV>> com.demo.controller.HotelController.getAllHotels()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/price/{maxPrice}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByPricePErNight(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.deleteById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/city/{city}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByCity(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/user/{user}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByRating(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/rating/{rating}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByReviewRating(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/review/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insertReview(com.demo.entity.Review)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/like/{startswith}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByNameLike(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/random/{size}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.getRandom(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.demo.mv.HotelMV> com.demo.controller.HotelController.findById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.update(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insert(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/send],methods=[GET]}" onto public void com.demo.controller.MailSenderController.sendSimpleMessage()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/]}" onto public java.lang.String com.demo.controller.ViewController.index(org.springframework.ui.Model)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionTranslator
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+INFO  [restartedMain] o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+INFO  [restartedMain] c.d.u.DBInitializer - DB Initialized
+INFO  [restartedMain] c.d.MongoWithBootApplication - Started MongoWithBootApplication in 2.596 seconds (JVM running for 3.027)
+INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+ERROR [http-nio-8080-exec-2] c.d.e.ExceptionTranslator - Custom Exception cought :- 
+com.demo.error.CustomParameterizedException: HotelException
+	at com.demo.error.HotelExceptionSupplier.lambda$0(HotelExceptionSupplier.java:14)
+	at com.demo.service.impl.HotelServiceImpl.getById(HotelServiceImpl.java:47)
+	at com.demo.controller.HotelController.findById(HotelController.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+WARN  [http-nio-8080-exec-2] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved exception caused by Handler execution: com.demo.error.CustomParameterizedException: HotelException
+INFO  [http-nio-8080-exec-4] c.d.c.HotelController - Finding all hotels : found 3
+INFO  [http-nio-8080-exec-6] c.d.c.HotelController - Finding all hotels : found 3
+INFO  [http-nio-8080-exec-7] c.d.c.HotelController - Finding all hotels : found 3
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@79ba62c8: startup date [Thu Nov 23 18:52:03 IST 2017]; root of context hierarchy
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.s.c.e.EhCacheManagerFactoryBean - Shutting down EhCache CacheManager
+INFO  [RMI TCP Connection(2)-127.0.0.1] o.m.d.connection - Closed connection [connectionId{localValue:2, serverValue:88}] to localhost:27017 because the pool has been closed.
+INFO  [restartedMain] c.d.MongoWithBootApplication - Starting MongoWithBootApplication on KELLGGNCPU0249 with PID 12250 (/home/user/Desktop/MYGIT/SpringBootWithMongo/target/classes started by user in /home/user/Desktop/MYGIT/SpringBootWithMongo)
+INFO  [restartedMain] c.d.MongoWithBootApplication - No active profile set, falling back to default profiles: default
+INFO  [restartedMain] o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@297ee5ec: startup date [Thu Nov 23 19:01:56 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [class org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$e3fa1061] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8080 (http)
+INFO  [restartedMain] o.a.c.c.StandardService - Starting service Tomcat
+INFO  [restartedMain] o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.11
+INFO  [localhost-startStop-1] o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+INFO  [localhost-startStop-1] o.s.w.c.ContextLoader - Root WebApplicationContext: initialization completed in 904 ms
+INFO  [localhost-startStop-1] o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+INFO  [localhost-startStop-1] o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+INFO  [restartedMain] o.m.d.cluster - Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+INFO  [restartedMain] o.m.d.cluster - Adding discovered server localhost:27017 to client view of cluster
+INFO  [cluster-ClusterId{value='5a16cdcdc70ff62fda4d2603', description='null'}-localhost:27017] o.m.d.connection - Opened connection [connectionId{localValue:1, serverValue:89}] to localhost:27017
+INFO  [cluster-ClusterId{value='5a16cdcdc70ff62fda4d2603', description='null'}-localhost:27017] o.m.d.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 10]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=391508}
+INFO  [cluster-ClusterId{value='5a16cdcdc70ff62fda4d2603', description='null'}-localhost:27017] o.m.d.cluster - Discovered cluster type of STANDALONE
+INFO  [restartedMain] o.m.d.connection - Opened connection [connectionId{localValue:2, serverValue:90}] to localhost:27017
+WARN  [restartedMain] n.s.e.c.CacheConfiguration - Configuration problem for cache hotelCache: MaxEntriesLocalHeap equal or greater than MaxEntriesLocalDisk. This will result in useless disk storage.
+INFO  [restartedMain] o.s.c.e.EhCacheManagerFactoryBean - Initializing EhCache CacheManager
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@297ee5ec: startup date [Thu Nov 23 19:01:56 IST 2017]; root of context hierarchy
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/abc]}" onto public java.lang.String com.demo.controller.ABCController.sayHi()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/names],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.get()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/update/{name}],methods=[GET]}" onto public java.lang.String com.demo.controller.CacheController.update(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/cache/],methods=[DELETE]}" onto public void com.demo.controller.CacheController.clear()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.demo.util.CustomResponse> com.demo.controller.HotelController.getAllHotels()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/price/{maxPrice}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByPricePErNight(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.deleteById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/city/{city}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByCity(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/user/{user}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByRating(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/rating/{rating}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByReviewRating(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/review/],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insertReview(com.demo.entity.Review)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/like/{startswith}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.findByNameLike(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/random/{size}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.demo.entity.Hotel>> com.demo.controller.HotelController.getRandom(int)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<com.demo.util.CustomResponse> com.demo.controller.HotelController.findById(java.lang.String)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[PUT]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.update(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/hotels],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.demo.controller.HotelController.insert(com.demo.entity.Hotel)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/send],methods=[GET]}" onto public void com.demo.controller.MailSenderController.sendSimpleMessage()
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/]}" onto public java.lang.String com.demo.controller.ViewController.index(org.springframework.ui.Model)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Detected @ExceptionHandler methods in exceptionTranslator
+INFO  [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+INFO  [restartedMain] o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+INFO  [restartedMain] o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+INFO  [restartedMain] c.d.u.DBInitializer - DB Initialized
+INFO  [restartedMain] c.d.MongoWithBootApplication - Started MongoWithBootApplication in 2.452 seconds (JVM running for 2.834)
+INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+INFO  [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 12 ms
+INFO  [http-nio-8080-exec-2] c.d.c.HotelController - Finding all hotels : found 3
+INFO  [http-nio-8080-exec-4] c.d.c.HotelController - Finding all hotels : found 3
+ERROR [http-nio-8080-exec-8] c.d.e.ExceptionTranslator - Custom Exception cought :- 
+com.demo.error.CustomParameterizedException: HotelException
+	at com.demo.error.HotelExceptionSupplier.lambda$0(HotelExceptionSupplier.java:14)
+	at com.demo.service.impl.HotelServiceImpl.getById(HotelServiceImpl.java:47)
+	at com.demo.controller.HotelController.findById(HotelController.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+WARN  [http-nio-8080-exec-8] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved exception caused by Handler execution: com.demo.error.CustomParameterizedException: HotelException
+INFO  [http-nio-8080-exec-10] c.d.c.HotelController - Finding all hotels : found 3

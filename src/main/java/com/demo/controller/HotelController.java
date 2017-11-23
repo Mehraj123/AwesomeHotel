@@ -21,6 +21,9 @@ import com.demo.entity.Hotel;
 import com.demo.entity.Review;
 import com.demo.repository.HotelRepository;
 import com.demo.repository.ReviewRepository;
+import com.demo.service.HotelService;
+import com.demo.successcode.HotelSuccessCode;
+import com.demo.util.CustomResponse;
 
 @RestController
 @RequestMapping("/hotels")
@@ -34,14 +37,19 @@ public class HotelController {
 	@Autowired
 	private ReviewRepository reviewRepository;
 
-	@GetMapping("/all")
-	public ResponseEntity<List<Hotel>> getAllHotels() {
-		return new ResponseEntity<>(this.hotelRepository.findAll(), HttpStatus.FOUND);
+	@Autowired
+	private HotelService hotelService;
+
+	@GetMapping
+	public ResponseEntity<CustomResponse> getAllHotels() {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getAll(), null), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Hotel> findById(@PathVariable("id") String id) {
-		return new ResponseEntity<>(this.hotelRepository.findById(id), HttpStatus.FOUND);
+	public ResponseEntity<CustomResponse> findById(@PathVariable("id") String id) {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getById(id), null), HttpStatus.OK);
 	}
 
 	@GetMapping("/price/{maxPrice}")
