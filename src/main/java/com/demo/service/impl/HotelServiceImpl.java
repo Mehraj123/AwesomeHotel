@@ -42,10 +42,13 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public HotelMV getById(String hotelId) {
+		log.info("Searching hotel by id {} ", hotelId);
 		Hotel hotel = hotelRepository.findById(hotelId);
 		if (hotel == null) {
+			log.info("No hotel found by id {} ", hotelId);
 			throw HotelExceptionSupplier.NO_HOTEL_FOUND_BY_ID.get();
 		}
+		log.info("Hotel found by id {} ", hotelId);
 		return modelMapper.map(hotel, HotelMV.class);
 	}
 
