@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.controller.HotelController;
 import com.demo.entity.Hotel;
+import com.demo.error.CustomParameterizedException;
 import com.demo.error.HotelExceptionSupplier;
 import com.demo.mv.HotelMV;
 import com.demo.repository.HotelRepository;
@@ -18,6 +19,8 @@ import com.demo.service.HotelService;
 import com.demo.vm.HotelVM;
 
 /**
+ * An impementation for {@code HotelService}
+ * 
  * @author Mehraj Malik
  * @version 1.0
  *
@@ -33,71 +36,186 @@ public class HotelServiceImpl implements HotelService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	/**
+	 * Provides all available {@code Hotel}
+	 * 
+	 * @author Mehraj Malik
+	 * @return {@code List<HotelMV>}
+	 */
 	@Override
 	public List<HotelMV> getAll() {
-		List<Hotel> hotels = hotelRepository.findAll();
-		log.info("Finding all hotels : found {}", hotels.size());
-		return Arrays.asList(modelMapper.map(hotels, HotelMV[].class));
+		try {
+			List<Hotel> hotels = hotelRepository.findAll();
+			log.info("Finding all hotels : found {}", hotels.size());
+			return Arrays.asList(modelMapper.map(hotels, HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
 	}
 
+	/**
+	 * Provides {@code Hotel} by Id
+	 * 
+	 * @author Mehraj Malik
+	 * @param hotelId
+	 *            Id of {@code Hotel}
+	 * @throws NO_HOTEL_EXIST_WITH_ID_EXCEPTION
+	 *             if no {@code Hotel} exists with provided id
+	 */
 	@Override
 	public HotelMV getById(String hotelId) {
-		log.info("Searching hotel by id {} ", hotelId);
-		Hotel hotel = hotelRepository.findById(hotelId);
-		if (hotel == null) {
-			log.info("No hotel found by id {} ", hotelId);
-			throw HotelExceptionSupplier.NO_HOTEL_FOUND_BY_ID.get();
+		try {
+			log.info("Searching hotel by id {} ", hotelId);
+			Hotel hotel = hotelRepository.findById(hotelId);
+			if (hotel == null) {
+				log.info("No hotel found by id {} ", hotelId);
+				throw HotelExceptionSupplier.NO_HOTEL_FOUND_BY_ID_EXCEPTION.get();
+			}
+			log.info("Hotel found by id {} ", hotelId);
+			return modelMapper.map(hotel, HotelMV.class);
+		} catch (CustomParameterizedException e) {
+			throw e;
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
 		}
-		log.info("Hotel found by id {} ", hotelId);
-		return modelMapper.map(hotel, HotelMV.class);
 	}
 
 	@Override
 	public List<HotelMV> getByMaxPrice(int maxPrice) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			List<Hotel> hotels = hotelRepository.findByPricePerNightLessThanEqual(maxPrice);
+			return Arrays.asList(modelMapper.map(hotels, HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
 	}
 
 	@Override
 	public HotelMV add(HotelVM hotelVM) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			if (getByName(hotelVM.getName()) == null) {
+				Hotel hotel = hotelRepository.insert(modelMapper.map(hotelVM, Hotel.class));
+				return modelMapper.map(hotel, HotelMV.class);
+			}
+			throw HotelExceptionSupplier.HOTELNAME_NOT_UNIQUE_EXCEPTION.get();
+		} catch (CustomParameterizedException e) {
+			throw e;
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_SAVE_EXCEPTION.get();
+		}
 	}
 
 	@Override
 	public HotelMV update(HotelVM hotelVM) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			getById(hotelVM.getId());
+			Hotel hotel = hotelRepository.save(modelMapper.map(hotelVM, Hotel.class));
+			return modelMapper.map(hotel, HotelMV.class);
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_UPDATE_EXCEPTION.get();
+		}
 	}
 
 	@Override
-	public boolean delete(String hotelId) {
-		// TODO Auto-generated method stub
+	public Boolean delete(String hotelId) {
+		try {
+
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_DELETE_EXCEPTION.get();
+		}
 		return false;
 	}
 
 	@Override
 	public List<HotelMV> getByCityName(String cityName) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return Arrays.asList(
+					modelMapper.map(hotelRepository.findByAddressCityIgnoreCaseLike(cityName), HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
 	}
 
 	@Override
 	public List<HotelMV> getByRating(double rating) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return Arrays
+					.asList(modelMapper.map(hotelRepository.findByRatingGreaterThanEqual(rating), HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
 	}
 
 	@Override
 	public List<HotelMV> getByHotelNameStartsWith(String hotelName) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return Arrays.asList(modelMapper.map(hotelRepository.findByNameIgnoreCaseLike(hotelName), HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
 	}
 
 	@Override
 	public List<HotelMV> getRandom(int size) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			if (size < 1) {
+				throw HotelExceptionSupplier.SIZE_CANNOT_BE_NEGATIVE_EXCEPTION.get();
+			}
+			return Arrays.asList(modelMapper.map(hotelRepository.getRandomDocument(size), HotelMV[].class));
+		} catch (CustomParameterizedException e) {
+			throw e;
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
+	}
+
+	@Override
+	public HotelMV getByName(String name) {
+		try {
+			Hotel hotel = hotelRepository.findByName(name);
+			if (hotel != null) {
+				return modelMapper.map(hotel, HotelMV.class);
+			}
+			return null;
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
+	}
+
+	/**
+	 * Provides all the {@code Hotel}s on which a particular user has commented
+	 * 
+	 * @param userName
+	 *            UserName of User
+	 * @throws HOTEL_FETCH_EXCEPTION
+	 *             if something went wrong while fetching data from DB
+	 * 
+	 */
+	@Override
+	public List<HotelMV> getByCommentUserName(String userName) {
+		try {
+			return Arrays.asList(modelMapper.map(hotelRepository.findByCommentUserName(userName), HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
+	}
+
+	/**
+	 * Provides all the {@code Review}s by hotel id
+	 * 
+	 * @param id
+	 *            {@code Hotel} id
+	 * @throws HOTEL_FETCH_EXCEPTION
+	 *             if something went wrong while fetching data from DB
+	 */
+	@Override
+	public List<HotelMV> getReviewByHotelId(String id) {
+		HotelMV hotel = getById(id);
+		try {
+			return Arrays.asList(modelMapper.map(hotelRepository.getReviewByHotelId(id), HotelMV[].class));
+		} catch (Exception e) {
+			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
+		}
 	}
 
 }

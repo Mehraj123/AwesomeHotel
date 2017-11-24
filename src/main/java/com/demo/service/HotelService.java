@@ -22,7 +22,7 @@ public interface HotelService {
 
 	HotelMV update(HotelVM hotelVM);
 
-	boolean delete(String hotelId);
+	Boolean delete(String hotelId);
 
 	List<HotelMV> getByCityName(String cityName);
 
@@ -31,4 +31,11 @@ public interface HotelService {
 	List<HotelMV> getByHotelNameStartsWith(String hotelName);
 
 	List<HotelMV> getRandom(int size);
+
+	HotelMV getByName(String name);
+
+	List<HotelMV> getByCommentUserName(String userName);
+
+	List<HotelMV> getReviewByHotelId(String id);
+
 }

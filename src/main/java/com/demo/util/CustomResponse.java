@@ -10,16 +10,16 @@ import java.util.Map;
 public class CustomResponse {
 
 	private final boolean success;
-	private final Object infoCode;
+	private final String infoCode;
 	private final String infoMsg;
 	private final Map<String, Object> metaInfo;
 	private final Object data;
 
-	public CustomResponse(Object infoCode, String infoMsg, Map<String, Object> metaInfo) {
+	public CustomResponse(String infoCode, String infoMsg, Map<String, Object> metaInfo) {
 		this(infoCode, infoMsg, null, metaInfo);
 	}
 
-	public CustomResponse(Object infoCode, String infoMsg, Object data, Map<String, Object> metaInfo) {
+	public CustomResponse(String infoCode, String infoMsg, Object data, Map<String, Object> metaInfo) {
 		this.success = true;
 		this.infoCode = infoCode;
 		this.infoMsg = infoMsg;
@@ -27,7 +27,7 @@ public class CustomResponse {
 		this.metaInfo = metaInfo;
 	}
 
-	public CustomResponse(Object infoCode, String infoMsg) {
+	public CustomResponse(String infoCode, String infoMsg) {
 		this(infoCode, infoMsg, null);
 	}
 

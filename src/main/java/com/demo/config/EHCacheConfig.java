@@ -12,7 +12,7 @@ import org.springframework.core.io.ClassPathResource;
  * Configuration for EHCache
  * 
  * @author Mehraj Malik
- *
+ * @version 1.0
  */
 @Configuration
 @EnableCaching

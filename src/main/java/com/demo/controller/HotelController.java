@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.entity.Hotel;
-import com.demo.entity.Review;
-import com.demo.repository.HotelRepository;
-import com.demo.repository.ReviewRepository;
 import com.demo.service.HotelService;
 import com.demo.successcode.HotelSuccessCode;
 import com.demo.util.CustomResponse;
+import com.demo.vm.HotelVM;
 
 @RestController
 @RequestMapping("/hotels")
 public class HotelController {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
-
-	@Autowired
-	private HotelRepository hotelRepository;
-
-	@Autowired
-	private ReviewRepository reviewRepository;
 
 	@Autowired
 	private HotelService hotelService;
@@ -53,69 +42,85 @@ public class HotelController {
 	}
 
 	@GetMapping("/price/{maxPrice}")
-	public ResponseEntity<List<Hotel>> findByPricePErNight(@PathVariable("maxPrice") int maxPrice) {
-		return new ResponseEntity<>(hotelRepository.findByPricePerNightLessThan(maxPrice), HttpStatus.FOUND);
+	public ResponseEntity<CustomResponse> findByPricePerNight(@PathVariable("maxPrice") int maxPrice) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByMaxPrice(maxPrice), null),
+				HttpStatus.OK);
 	}
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> insert(@RequestBody Hotel hotel) {
-		Hotel insertedHotel = this.hotelRepository.insert(hotel);
-		log.info("Inserted Hotel : " + insertedHotel.getName() + " - " + insertedHotel.getId());
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<CustomResponse> insert(@RequestBody HotelVM hotelVM) {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.add(hotelVM), null), HttpStatus.OK);
 	}
 
 	@PutMapping
-	public ResponseEntity<Void> update(@RequestBody Hotel hotel) {
-		Hotel updatedHotel = this.hotelRepository.save(hotel); // upsert
-		log.info("Updated Hotel : ", updatedHotel.getName() + " - " + updatedHotel.getId());
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<CustomResponse> update(@RequestBody HotelVM hotelVM) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.update(hotelVM), null),
+				HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteById(@PathVariable(name = "id") String id) {
-		this.hotelRepository.delete(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<CustomResponse> deleteById(@PathVariable(name = "id") String id) {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.delete(id), null), HttpStatus.OK);
 	}
 
-	@GetMapping("/city/{city}")
-	public ResponseEntity<List<Hotel>> findByCity(@PathVariable(name = "city") String city) {
-		List<Hotel> list = this.hotelRepository.findByAddressCityIgnoreCase(city);
-		log.info("ByCity : ", list);
-		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	@GetMapping("/city/{cityName}")
+	public ResponseEntity<CustomResponse> findByCity(@PathVariable(name = "cityName") String cityName) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByCityName(cityName), null),
+				HttpStatus.OK);
 	}
 
-	@GetMapping("/user/{user}")
-	public ResponseEntity<List<Hotel>> findByRating(@PathVariable(name = "user") String user) {
-		List<Hotel> list = this.hotelRepository.findByCommentUserName(user);
-		log.info("By userName : ", list);
-		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	@GetMapping("/user/{userName}")
+	public ResponseEntity<CustomResponse> findByRating(@PathVariable(name = "userName") String userName) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByCommentUserName(userName), null),
+				HttpStatus.OK);
 	}
 
 	@GetMapping("/rating/{rating}")
-	public ResponseEntity<List<Hotel>> findByReviewRating(@PathVariable(name = "rating") int rating) {
-		List<Hotel> list = this.hotelRepository.findByRatingGreaterThan(rating);
-		log.info("Byrating : ", list);
-		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	public ResponseEntity<CustomResponse> findByReviewRating(@PathVariable(name = "rating") double rating) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByRating(rating), null),
+				HttpStatus.OK);
 	}
 
-	@PostMapping("/review/")
-	public ResponseEntity<Void> insertReview(@RequestBody Review review) {
-		Review insertedHotel = this.reviewRepository.save(review);
-		log.info("Inserted Hotel : ", insertedHotel.getUserName() + " - " + insertedHotel.getId());
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	/*@PostMapping("{hotelId}/review/")
+	public ResponseEntity<CustomResponse> addReview(@RequestBody Review review) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByRating(rating), null),
+				HttpStatus.OK);
+	}*/
+
+	@GetMapping("/{hotelId}/reviews")
+	public ResponseEntity<CustomResponse> getReview(@PathVariable("hotelId") String hotelId) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getReviewByHotelId(hotelId), null),
+				HttpStatus.OK);
 	}
 
-	@GetMapping("/like/{startswith}")
-	public ResponseEntity<List<Hotel>> findByNameLike(@PathVariable(name = "startswith") String startswith) {
-		List<Hotel> list = this.hotelRepository.findByHotelNameStartsWith(startswith);
-		log.info("startsWith : ", list);
-		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	@GetMapping("/like/{hotelName}")
+	public ResponseEntity<CustomResponse> findByNameLike(@PathVariable(name = "hotelName") String hotelName) {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByHotelNameStartsWith(hotelName), null),
+				HttpStatus.OK);
 	}
 
 	@GetMapping("/random/{size}")
-	public ResponseEntity<List<Hotel>> getRandom(@PathVariable(name = "size") int size) {
-		List<Hotel> list = this.hotelRepository.getRandomDocument(size);
-		log.info("Random Documents : {}", list);
-		return new ResponseEntity<>(list, HttpStatus.FOUND);
+	public ResponseEntity<CustomResponse> getRandom(@PathVariable(name = "size") int size) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getRandom(size), null),
+				HttpStatus.OK);
 	}
 }

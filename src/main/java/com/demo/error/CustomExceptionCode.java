@@ -6,11 +6,15 @@ package com.demo.error;
  */
 public enum CustomExceptionCode {
 
-	HOTEL_CREATE_EXCEPTION("ERR0001","Exception occured while creating hotel"),
+	HOTEL_FETCH_EXCEPTION("ERR0001","Exception occured while creating hotel"),
 	HOTEL_SAVE_EXCEPTION("ERR0002","Exception occured while saving hotel"),
 	HOTEL_UPDATE_EXCEPTION("ERR0003","Exception occured while updating hotel"),
 	HOTEL_DELETE_EXCEPTION("ERR0004","Exception occured while deleting hotel"),
-	NO_HOTEL_EXIST_WITH_ID_EXCEPTION("ERR0005","No hotel exist with provided Id");
+	NO_HOTEL_EXIST_WITH_ID_EXCEPTION("ERR0005","No hotel exist with provided Id"),
+	HOTELNAME_NOT_UNIQUE_EXCEPTION("ERR0006","No hotel exist with provided Id"),
+	SIZE_CANNOT_BE_NEGATIVE("ERR0007","Size cannot be negative");
+	
+	
 	
 	
 	private final String errCode;
