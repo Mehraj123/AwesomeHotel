@@ -3,14 +3,11 @@ package com.demo.repository;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.MatchOperation;
-import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
@@ -68,16 +65,17 @@ public class HotelRepositoryImpl implements HotelCustomRepository {
 
 	@Override
 	public List<Hotel> getReviewByHotelId(String id) {
-		ObjectId objectId = new ObjectId(id);
-		MatchOperation match = Aggregation.match(Criteria.where("id").is(objectId.get()));
+		/*ObjectId objectId = new ObjectId(id);
+		MatchOperation match = Aggregation.match(Criteria.where("id").is(objectId.ge));
 		ProjectionOperation projection = Aggregation.project("reviews");
 		Aggregation aggregation = Aggregation.newAggregation(match, projection);
 		AggregationResults<Hotel> results = mongoOperations.aggregate(aggregation, "hotel", Hotel.class);
-		return results.getMappedResults();
-		/*Query query = new Query();
+		return results.getMappedResults();*/
+		Query query = new Query();
+		query.fields().include("reviews");
 		query.addCriteria(Criteria.where("id").is(id));
 		List<Hotel> hotels = mongoOperations.find(query, Hotel.class);
-		return hotels;*/
+		return hotels;
 	}
 
 }
