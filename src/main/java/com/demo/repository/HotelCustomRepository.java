@@ -3,6 +3,7 @@ package com.demo.repository;
 import java.util.List;
 
 import com.demo.entity.Hotel;
+import com.demo.entity.Review;
 
 /**
  * @author Mehraj Malik
@@ -18,6 +19,8 @@ public interface HotelCustomRepository {
 
 	public List<Hotel> getRandomDocument(int size);
 
-	public List<Hotel> getReviewByHotelId(String id);
+	public List<Hotel> getReviewByHotelId(String hotelId);
+	
+	public String updateReview(String hotelId, Review review);
 
 }

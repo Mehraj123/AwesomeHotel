@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.entity.Review;
 import com.demo.service.HotelService;
 import com.demo.successcode.HotelSuccessCode;
 import com.demo.util.CustomResponse;
@@ -24,7 +23,7 @@ import com.demo.vm.HotelVM;
 @RequestMapping("/hotels")
 public class HotelController {
 
-	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
+	//private static final Logger log = LoggerFactory.getLogger(HotelController.class);
 
 	@Autowired
 	private HotelService hotelService;
@@ -33,6 +32,20 @@ public class HotelController {
 	public ResponseEntity<CustomResponse> getAllHotels() {
 		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
 				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getAll(), null), HttpStatus.OK);
+	}
+	
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomResponse> insert(@RequestBody HotelVM hotelVM) {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.add(hotelVM), null), HttpStatus.OK);
+	}
+	
+	@PutMapping
+	public ResponseEntity<CustomResponse> update(@RequestBody HotelVM hotelVM) {
+		return new ResponseEntity<>(
+				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.update(hotelVM), null),
+				HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
@@ -49,20 +62,7 @@ public class HotelController {
 				HttpStatus.OK);
 	}
 
-	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomResponse> insert(@RequestBody HotelVM hotelVM) {
-		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.add(hotelVM), null), HttpStatus.OK);
-	}
-
-	@PutMapping
-	public ResponseEntity<CustomResponse> update(@RequestBody HotelVM hotelVM) {
-		return new ResponseEntity<>(
-				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.update(hotelVM), null),
-				HttpStatus.OK);
-	}
-
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<CustomResponse> deleteById(@PathVariable(name = "id") String id) {
 		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
@@ -93,13 +93,13 @@ public class HotelController {
 				HttpStatus.OK);
 	}
 
-	/*@PostMapping("{hotelId}/review/")
-	public ResponseEntity<CustomResponse> addReview(@RequestBody Review review) {
+	@PostMapping("{hotelId}/reviews")
+	public ResponseEntity<CustomResponse> addReview(@PathVariable("hotelId") String hotelId, @RequestBody Review review) {
 		return new ResponseEntity<>(
 				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getByRating(rating), null),
+						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.addReviewToHotel(hotelId, review), null),
 				HttpStatus.OK);
-	}*/
+	}
 
 	@GetMapping("/{hotelId}/reviews")
 	public ResponseEntity<CustomResponse> getReview(@PathVariable("hotelId") String hotelId) {

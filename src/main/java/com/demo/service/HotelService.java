@@ -2,6 +2,7 @@ package com.demo.service;
 
 import java.util.List;
 
+import com.demo.entity.Review;
 import com.demo.mv.HotelMV;
 import com.demo.vm.HotelVM;
 
@@ -37,5 +38,6 @@ public interface HotelService {
 	List<HotelMV> getByCommentUserName(String userName);
 
 	List<HotelMV> getReviewByHotelId(String id);
+	Boolean addReviewToHotel(String id, Review review);
 
 }

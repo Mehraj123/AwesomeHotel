@@ -1,49 +1,42 @@
 package com.demo.entity;
 
 public class Review {
+	
 	private String id;
-	private String userName;
+	private User user;
 	private int rating;
+	private String description;
 	private boolean isApproved;
 
-	public Review() {
+	public String getId() {
+		return id;
 	}
-
-	public Review(String userName, int rating, boolean isApproved) {
-		this.userName = userName;
-		this.rating = rating;
-		this.isApproved = isApproved;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-	public String getUserName() {
-		return userName;
+	public User getUser() {
+		return user;
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
 	public int getRating() {
 		return rating;
 	}
-
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-
-	public boolean isApproved() {
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public boolean getIsApproved() {
 		return isApproved;
 	}
-
-	public void setApproved(boolean isApproved) {
+	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
-
-	/**
-	 * @author Mehraj Malik
-	 */
-	public String getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
+	
 }

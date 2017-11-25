@@ -12,14 +12,12 @@ import com.demo.entity.Hotel;
 import com.demo.repository.HotelRepository;
 
 @Component
-public class DBInitializer implements CommandLineRunner{
+public class DBInitializer {
 	
 private static Logger logger = LoggerFactory.getLogger(DBInitializer.class);
 	
-	@Autowired
-	private HotelRepository hotelRepository;
 
-	@Override
+	/*@Override
 	public void run(String... arg0) throws Exception {
 		List<Hotel> hotelList = DBUtil.initDB();
 		
@@ -27,6 +25,6 @@ private static Logger logger = LoggerFactory.getLogger(DBInitializer.class);
 		this.hotelRepository.save(hotelList);
 		
 		logger.info("DB Initialized");
-	}
+	}*/
 
 }

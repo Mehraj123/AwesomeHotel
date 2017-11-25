@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.controller.HotelController;
 import com.demo.entity.Hotel;
+import com.demo.entity.Review;
 import com.demo.error.CustomParameterizedException;
 import com.demo.error.HotelExceptionSupplier;
 import com.demo.mv.HotelMV;
@@ -216,6 +217,18 @@ public class HotelServiceImpl implements HotelService {
 		} catch (Exception e) {
 			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
 		}
+	}
+
+	/**
+	 * Adds {@code Review} to a {@code Hotel}
+	 * @param id Id of Hotel
+	 * @param review {@code ReviewMV} to be added
+	 */
+	@Override
+	public Boolean addReviewToHotel(String id, Review  review) {
+		HotelMV hotel = getById(id);
+		hotelRepository.updateReview(id, review);
+		return Boolean.TRUE;
 	}
 
 }

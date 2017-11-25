@@ -1,4 +1,4 @@
-package com.hotelcontroller;
+/*package com.hotelcontroller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,3 +55,4 @@ public static List<Hotel> mockHotel(){
 				"{\"name\":\"God Win\",\"pricePerNight\":1000,\"address\":{\"country\":\"India\",\"city\":\"Meerut\"},\"reviews\":[{\"userName\":\"Rahul\",\"rating\":10,\"approved\":true}]}";
 	}
 }
+*/
