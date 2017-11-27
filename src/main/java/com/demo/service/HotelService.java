@@ -38,6 +38,7 @@ public interface HotelService {
 	List<HotelMV> getByCommentUserName(String userName);
 
 	List<HotelMV> getReviewByHotelId(String id);
-	Boolean addReviewToHotel(String id, Review review);
+
+	HotelMV addReviewToHotel(String id, Review review);
 
 }

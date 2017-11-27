@@ -1,7 +1,11 @@
 package com.demo.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -95,6 +99,7 @@ public class HotelServiceImpl implements HotelService {
 	public HotelMV add(HotelVM hotelVM) {
 		try {
 			if (getByName(hotelVM.getName()) == null) {
+				hotelVM.setRegisteredDateTime(LocalDateTime.now(ZoneId.systemDefault()));
 				Hotel hotel = hotelRepository.insert(modelMapper.map(hotelVM, Hotel.class));
 				return modelMapper.map(hotel, HotelMV.class);
 			}
@@ -221,14 +226,25 @@ public class HotelServiceImpl implements HotelService {
 
 	/**
 	 * Adds {@code Review} to a {@code Hotel}
-	 * @param id Id of Hotel
-	 * @param review {@code ReviewMV} to be added
+	 * 
+	 * @param id
+	 *            Id of Hotel
+	 * @param review
+	 *            {@code ReviewMV} to be added
 	 */
 	@Override
-	public Boolean addReviewToHotel(String id, Review  review) {
+	public HotelMV addReviewToHotel(String id, Review review) {
 		HotelMV hotel = getById(id);
-		hotelRepository.updateReview(id, review);
-		return Boolean.TRUE;
+		// hotelRepository.updateReview(id, review);
+		List<Review> reviews = hotel.getReviews();
+		if (reviews == null) {
+			reviews = new ArrayList<>();
+		}
+		review.setId(UUID.randomUUID().toString());
+		reviews.add(review);
+		hotel.setReviews(reviews);
+		Hotel updatedHotel = hotelRepository.save(modelMapper.map(hotel, Hotel.class));
+		return modelMapper.map(updatedHotel, HotelMV.class);
 	}
 
 }

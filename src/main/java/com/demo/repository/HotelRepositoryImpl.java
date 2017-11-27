@@ -26,10 +26,8 @@ import com.mongodb.WriteResult;
  *
  */
 public class HotelRepositoryImpl implements HotelCustomRepository {
-	
-	
-	private static final Logger log = LoggerFactory.getLogger(HotelRepositoryImpl.class);
 
+	private static final Logger log = LoggerFactory.getLogger(HotelRepositoryImpl.class);
 
 	@Autowired
 	MongoTemplate mongoTemplate;
@@ -40,7 +38,7 @@ public class HotelRepositoryImpl implements HotelCustomRepository {
 	@Override
 	public List<Hotel> findByCommentUserName(String userName) {
 		Query query = new Query(Criteria.where("reviews.userName").in(userName));
-		//query.fields().include("reviews.$");
+		// query.fields().include("reviews.$");
 		return mongoTemplate.find(query, Hotel.class);
 	}
 
@@ -90,25 +88,27 @@ public class HotelRepositoryImpl implements HotelCustomRepository {
 
 	/**
 	 * Add review to {@code Hotel}
-	 * @param hotelId Id of hotel
-	 * @param review Review to be added
+	 * 
+	 * @param hotelId
+	 *            Id of hotel
+	 * @param review
+	 *            Review to be added
 	 */
 	@Override
 	public String updateReview(String hotelId, Review review) {
 		Query byID = new Query();
 		byID.addCriteria(Criteria.where("id").is(hotelId));
-		DBObject value = new BasicDBObject("rating", review.getRating())
-				.append("id", UUID.randomUUID())
-				.append("description", review.getDescription())
-				.append("isApproved", review.getIsApproved())
-				.append("user", new BasicDBObject("id", review.getUser().getId())
-				.append("name", review.getUser().getName()));
-		WriteResult writeResult = mongoOperations.updateFirst(byID, new Update().addToSet("reviews", value), Hotel.class);
+		DBObject value = new BasicDBObject("rating", review.getRating()).append("id", UUID.randomUUID())
+				.append("description", review.getDescription()).append("isApproved", review.getIsApproved())
+				.append("user",
+						new BasicDBObject("id", review.getUser().getId()).append("name", review.getUser().getName()));
+		WriteResult writeResult = mongoOperations.updateFirst(byID, new Update().addToSet("reviews", value),
+				Hotel.class);
 		log.info("isUpdateOfExisting {} ", writeResult.isUpdateOfExisting());
 		log.info("wasAcknowledged {} ", writeResult.wasAcknowledged());
 		Object updatedId = writeResult.getUpsertedId();
 		log.info("getUpsertedId {} ", updatedId);
-		return updatedId+"";
+		return updatedId + "";
 	}
 
 }
