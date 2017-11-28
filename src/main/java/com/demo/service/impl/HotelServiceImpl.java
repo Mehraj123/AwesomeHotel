@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.demo.controller.HotelController;
@@ -21,6 +24,8 @@ import com.demo.error.HotelExceptionSupplier;
 import com.demo.mv.HotelMV;
 import com.demo.repository.HotelRepository;
 import com.demo.service.HotelService;
+import com.demo.util.PageInfo;
+import com.demo.util.PageableInfo;
 import com.demo.vm.HotelVM;
 
 /**
@@ -48,11 +53,18 @@ public class HotelServiceImpl implements HotelService {
 	 * @return {@code List<HotelMV>}
 	 */
 	@Override
-	public List<HotelMV> getAll() {
+	public PageableInfo<HotelMV> getAll(Pageable pageable) {
 		try {
-			List<Hotel> hotels = hotelRepository.findAll();
-			log.info("Finding all hotels : found {}", hotels.size());
-			return Arrays.asList(modelMapper.map(hotels, HotelMV[].class));
+			Page<Hotel> hotels = hotelRepository.findAll(pageable);
+			PageableInfo<HotelMV> pageableInfo = new PageableInfo<>();
+			if (!hotels.getContent().isEmpty()) {
+				pageableInfo.setContent(Arrays.asList(modelMapper.map(hotels.getContent(), HotelMV[].class)));
+			} else {
+				pageableInfo.setContent(Collections.emptyList());
+			}
+			pageableInfo.setPageInfo(modelMapper.map(hotels, PageInfo.class));
+			log.info("Finding all hotels : found {}", hotels.getContent().size());
+			return pageableInfo;
 		} catch (Exception e) {
 			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
 		}
@@ -86,10 +98,21 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<HotelMV> getByMaxPrice(int maxPrice) {
+	public PageableInfo<HotelMV> getByMaxPrice(int maxPrice, Pageable pageable) {
 		try {
-			List<Hotel> hotels = hotelRepository.findByPricePerNightLessThanEqual(maxPrice);
-			return Arrays.asList(modelMapper.map(hotels, HotelMV[].class));
+			log.info("Finding by maxPrice {} {}", maxPrice, pageable);
+			Page<Hotel> page = hotelRepository.findByPricePerNightLessThanEqual(maxPrice, pageable);
+			List<Hotel> hotels = page.getContent();
+			PageableInfo<HotelMV> pageableInfo = new PageableInfo<>();
+			if (!hotels.isEmpty()) {
+				log.info("found by maxPrice {}", hotels.size());
+				pageableInfo.setContent(Arrays.asList(modelMapper.map(hotels, HotelMV[].class)));
+			} else {
+				log.info("found by maxPrice {}", hotels.size());
+				pageableInfo.setContent(Collections.emptyList());
+			}
+			pageableInfo.setPageInfo(modelMapper.map(page, PageInfo.class));
+			return pageableInfo;
 		} catch (Exception e) {
 			throw HotelExceptionSupplier.HOTEL_FETCH_EXCEPTION.get();
 		}

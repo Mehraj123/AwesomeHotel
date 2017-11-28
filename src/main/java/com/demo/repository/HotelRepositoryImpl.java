@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -73,12 +75,12 @@ public class HotelRepositoryImpl implements HotelCustomRepository {
 
 	@Override
 	public List<Hotel> getReviewByHotelId(String hotelId) {
-		/*ObjectId objectId = new ObjectId(id);
-		MatchOperation match = Aggregation.match(Criteria.where("id").is(objectId.ge));
-		ProjectionOperation projection = Aggregation.project("reviews");
-		Aggregation aggregation = Aggregation.newAggregation(match, projection);
+		ObjectId objectId = new ObjectId(hotelId);
+		MatchOperation match = Aggregation.match(Criteria.where("_id").is(new ObjectId(hotelId)));
+		// ProjectionOperation projection = Aggregation.project("reviews");
+		Aggregation aggregation = Aggregation.newAggregation(match);
 		AggregationResults<Hotel> results = mongoOperations.aggregate(aggregation, "hotel", Hotel.class);
-		return results.getMappedResults();*/
+		// return results.getMappedResults();
 		Query query = new Query();
 		query.fields().include("reviews");
 		query.addCriteria(Criteria.where("id").is(hotelId));
