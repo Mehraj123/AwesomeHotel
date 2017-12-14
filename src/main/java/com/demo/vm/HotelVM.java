@@ -22,7 +22,7 @@ public class HotelVM {
 
 	private String id;
 	@NotBlank(message = "Hotel Name cannot be blank")
-	@Size(min = 3, max = 25, message = "Hotel name length must be between 3-25")
+	@Size(min = 3, max = 50, message = "Hotel name length must be between 3-50")
 	private String name;
 	@Range(min = 0, max = 100000, message = "Price Per Night must be between 0-100000")
 	private int pricePerNight;
