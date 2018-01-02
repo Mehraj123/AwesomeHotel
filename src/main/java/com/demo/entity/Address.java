@@ -1,7 +1,11 @@
 package com.demo.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Address {
+	@NotBlank(message = "Country cannot be blank")
 	private String country;
+	@NotBlank(message = "City cannot be blank")
 	private String city;
 
 	public Address() {
