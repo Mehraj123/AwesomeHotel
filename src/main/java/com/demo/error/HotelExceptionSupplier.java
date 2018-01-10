@@ -1,6 +1,6 @@
 package com.demo.error;
 
-import com.google.common.base.Supplier;
+import java.util.function.Supplier;
 
 /**
  * @author Mehraj Malik
