@@ -312,6 +312,7 @@ public class HotelServiceImpl implements HotelService {
 		}
 		review.setId(UUID.randomUUID().toString());
 		reviews.add(review);
+		review.setDate(LocalDateTime.now());
 		hotel.setReviews(reviews);
 		Hotel updatedHotel = hotelRepository.save(modelMapper.map(hotel, Hotel.class));
 		return modelMapper.map(updatedHotel, HotelMV.class);

@@ -1,6 +1,7 @@
 package com.demo.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Review implements Serializable {
 
@@ -11,6 +12,7 @@ public class Review implements Serializable {
 	private int rating;
 	private String description;
 	private boolean isApproved;
+	private LocalDateTime date;
 
 	public String getId() {
 		return id;
@@ -18,6 +20,18 @@ public class Review implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 
 	public User getUser() {
