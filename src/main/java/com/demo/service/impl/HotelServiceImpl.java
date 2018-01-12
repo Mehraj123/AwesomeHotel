@@ -179,7 +179,7 @@ public class HotelServiceImpl implements HotelService {
 		}
 	}
 
-	@CachePut(value = "Hotel", key = "#hotelVM.id", condition = "#result != null")
+	@CachePut(value = "Hotel", key = "#hotelVM.id")
 	@Override
 	public HotelMV update(HotelVM hotelVM) {
 		try {
