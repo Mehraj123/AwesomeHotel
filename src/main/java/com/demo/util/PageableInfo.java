@@ -1,5 +1,6 @@
 package com.demo.util;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,9 @@ import java.util.List;
  * @version 1.0
  *
  */
-public class PageableInfo<T> {
+public class PageableInfo<T> implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private List<T> content;
 	private PageInfo pageInfo;

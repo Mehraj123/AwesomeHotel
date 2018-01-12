@@ -44,4 +44,6 @@ public interface HotelService {
 
 	HotelMV addReviewToHotel(String id, Review review);
 
+	Boolean clearCache();
+
 }

@@ -20,6 +20,9 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,6 +50,8 @@ public class HotelServiceImpl implements HotelService {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
 
+	public static final String KEY = "getAllHotels";
+
 	@Autowired
 	private HotelRepository hotelRepository;
 
@@ -62,6 +67,7 @@ public class HotelServiceImpl implements HotelService {
 	 *             If something went wrong while fetching data from DB
 	 * @return {@code List<HotelMV>}
 	 */
+	@Cacheable(value = "Hotel", key = "#root.methodName")
 	@Override
 	public PageableInfo<HotelMV> getAll(Pageable pageable) {
 		try {
@@ -80,6 +86,12 @@ public class HotelServiceImpl implements HotelService {
 		}
 	}
 
+	@Override
+	@CacheEvict(value = "Hotel", key = "getAll", allEntries = true)
+	public Boolean clearCache() {
+		return true;
+	}
+
 	/**
 	 * Provides {@code Hotel} by Id
 	 * 
@@ -90,6 +102,7 @@ public class HotelServiceImpl implements HotelService {
 	 * @throws HOTEL_FETCH_EXCEPTION
 	 *             If something went wrong while fetching data from DB
 	 */
+	@Cacheable(value = "Hotel", key = "#hotelId")
 	@Override
 	public HotelMV getById(String hotelId) {
 		try {
@@ -166,11 +179,13 @@ public class HotelServiceImpl implements HotelService {
 		}
 	}
 
+	@CachePut(value = "Hotel", key = "#hotelVM.id", condition = "#result != null")
 	@Override
 	public HotelMV update(HotelVM hotelVM) {
 		try {
 			getById(hotelVM.getId());
 			Hotel hotel = hotelRepository.save(modelMapper.map(hotelVM, Hotel.class));
+			log.info("Hotel with Id {} has been updated", hotelVM.getId());
 			return modelMapper.map(hotel, HotelMV.class);
 		} catch (Exception e) {
 			throw HOTEL_UPDATE_EXCEPTION.get();

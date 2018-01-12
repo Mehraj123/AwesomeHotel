@@ -1,8 +1,12 @@
 package com.demo.entity;
 
+import java.io.Serializable;
+
 import org.hibernate.validator.constraints.NotBlank;
 
-public class Address {
+public class Address implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@NotBlank(message = "Country cannot be blank")
 	private String country;
 	@NotBlank(message = "City cannot be blank")

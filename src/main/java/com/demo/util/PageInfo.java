@@ -1,11 +1,15 @@
 package com.demo.util;
 
+import java.io.Serializable;
+
 /**
  * @author Mehraj Malik
  * @version 1.0
  *
  */
-public class PageInfo {
+public class PageInfo implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String totalPages;
 	private String totalElements;

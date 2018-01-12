@@ -141,4 +141,10 @@ public class HotelController {
 						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getRandom(size), null),
 				HttpStatus.OK);
 	}
+
+	@GetMapping("/cache/clearAllCache/")
+	public ResponseEntity<CustomResponse> clear() {
+		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.clearCache(), null), HttpStatus.OK);
+	}
 }

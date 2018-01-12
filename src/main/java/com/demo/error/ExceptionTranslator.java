@@ -46,7 +46,7 @@ public class ExceptionTranslator {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	public ParameterizedErrorVM processMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
-		log.error("-- HttpRequestMethodNotSupportedException --- ");
+		log.error("-- HttpRequestMethodNotSupportedException :-  ", exception);
 		return new ParameterizedErrorVM(RegisteredException.METHOD_NOT_ALLOWED.getException(),
 				RegisteredException.METHOD_NOT_ALLOWED.getExceptionMessage(), Collections.emptyList());
 	}
@@ -55,7 +55,7 @@ public class ExceptionTranslator {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	public ParameterizedErrorVM processHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
-		log.error("-- Request Body not readable exception :  ", exception);
+		log.error("-- Request Body not readable exception :-  ", exception);
 		return new ParameterizedErrorVM(RegisteredException.HTTP_BODY_EXCEPTION.getException(),
 				RegisteredException.HTTP_BODY_EXCEPTION.getExceptionMessage(), Collections.emptyList());
 	}
@@ -64,7 +64,7 @@ public class ExceptionTranslator {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ParameterizedErrorVM processException(Exception ex) {
-		log.error("----Unknown Exception--- ", ex);
+		log.error("----Unknown Exception :- ", ex);
 		return new ParameterizedErrorVM(RegisteredException.UNKNOWN_EXCEPTION.getException(),
 				RegisteredException.UNKNOWN_EXCEPTION.getExceptionMessage(), Collections.emptyList());
 	}

@@ -1,5 +1,6 @@
 package com.demo.mv;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.demo.entity.Address;
@@ -10,7 +11,9 @@ import com.demo.entity.Review;
  * @version 1.0
  *
  */
-public class HotelMV {
+public class HotelMV implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private String name;
