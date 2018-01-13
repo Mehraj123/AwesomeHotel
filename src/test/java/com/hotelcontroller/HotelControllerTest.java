@@ -17,8 +17,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.demo.controller.HotelController;
-import com.demo.repository.HotelRepository;
+import com.ah.controller.HotelController;
+import com.ah.repository.HotelRepository;
 
 @RunWith(SpringRunner.class)
 // @SpringBootTest(webEnvironment =

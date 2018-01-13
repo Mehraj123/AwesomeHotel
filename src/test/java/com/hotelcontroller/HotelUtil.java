@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.demo.entity.Address;
-import com.demo.entity.Hotel;
-import com.demo.entity.Review;
+import com.ah.entity.Address;
+import com.ah.entity.Hotel;
+import com.ah.entity.Review;
 
 public class HotelUtil {
 
