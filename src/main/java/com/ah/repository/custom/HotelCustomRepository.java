@@ -1,4 +1,4 @@
-package com.ah.repository;
+package com.ah.repository.custom;
 
 import java.util.List;
 
