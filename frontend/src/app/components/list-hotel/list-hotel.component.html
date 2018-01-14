@@ -13,7 +13,9 @@
               <td>{{hotel.id}}</td>
               <td>{{hotel.name}}</td>
               <td>{{hotel.pricePerNight}}</td>
-              <td><button class="btn btn-danger">Delete</button> <button class="btn btn-primary">Edit</button></td>
+              <td><button class="btn btn-danger" (click)="deleteHotel(hotel)">Delete</button>
+                 <button class="btn btn-primary">Edit</button>
+                </td>
           </tr>
         </tbody>
       </table>

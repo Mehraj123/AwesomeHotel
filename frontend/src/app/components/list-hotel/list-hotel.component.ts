@@ -22,5 +22,14 @@ export class ListHotelComponent implements OnInit {
       console.log(error);
     }) 
   }
+  
+  deleteHotel(hotel:Hotel){
+    console.log("Deleting hotel "+hotel)
+    this._hotelService.deleteHotel(hotel.id).subscribe((date)=>{
+      this.hotels.splice(this.hotels.indexOf(hotel),1);
+    },(error)=>{
+      console.log("Error occured while deletig hotel : "+error);
+    })
+  }
 
 }
