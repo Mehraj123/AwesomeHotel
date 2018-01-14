@@ -19,8 +19,19 @@ export class HotelService {
     .catch(this.errorHandler);
   }
 
+  deleteHotel(id:string){
+    return this._http.delete(this.baseURL+'/hotels/'+id, this.options)
+    .map((response:Response)=>response.json())
+    .catch(this.errorHandler);
+  }
+
   errorHandler(error:Response){
     return Observable.throw(error||"SERVER ERROR"); 
   }
 
+ 
+
+  updateHotel(){
+
+  }
 }
