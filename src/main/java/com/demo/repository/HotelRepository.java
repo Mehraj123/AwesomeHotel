@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.demo.entity.Hotel;
+import com.demo.repository.custom.HotelCustomRepository;
 
 /**
  * Mongo repository for {@code Hotel}
