@@ -169,6 +169,7 @@ public class HotelServiceImpl implements HotelService {
 			if (getByName(hotelVM.getName()) == null) {
 				hotelVM.setRegisteredDateTime(LocalDateTime.now(ZoneId.systemDefault()));
 				Hotel hotel = hotelRepository.insert(modelMapper.map(hotelVM, Hotel.class));
+				log.info("New hotel with name {} has been added", hotel.getName());
 				return modelMapper.map(hotel, HotelMV.class);
 			}
 			throw HOTELNAME_NOT_UNIQUE_EXCEPTION.get();
@@ -195,7 +196,7 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public Boolean delete(String hotelId) {
 		try {
-
+			log.info("Hotel with id {} has been deleted", hotelId);
 		} catch (Exception e) {
 			throw HOTEL_DELETE_EXCEPTION.get();
 		}
@@ -312,6 +313,7 @@ public class HotelServiceImpl implements HotelService {
 		}
 		review.setId(UUID.randomUUID().toString());
 		reviews.add(review);
+		review.setDate(LocalDateTime.now());
 		hotel.setReviews(reviews);
 		Hotel updatedHotel = hotelRepository.save(modelMapper.map(hotel, Hotel.class));
 		return modelMapper.map(updatedHotel, HotelMV.class);
