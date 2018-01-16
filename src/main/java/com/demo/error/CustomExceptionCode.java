@@ -12,10 +12,11 @@ public enum CustomExceptionCode {
 	HOTEL_DELETE_EXCEPTION("ERR0004","Exception occured while deleting hotel"),
 	NO_HOTEL_EXIST_WITH_ID_EXCEPTION("ERR0005","No hotel exist with provided Id"),
 	HOTELNAME_NOT_UNIQUE_EXCEPTION("ERR0006","Hotel name must be unique."),
-	SIZE_CANNOT_BE_NEGATIVE("ERR0007","Size cannot be negative");
-	
-	
-	
+	SIZE_CANNOT_BE_NEGATIVE("ERR0007","Size cannot be negative"),
+	USERNAME_NOT_UNIQUE("ERR0008", "User name is not Unique"),
+	EMAIL_NOT_UNIQUE("ERR0009", "Email is not Unique"),
+	PHONE_NUMBER_NOT_UNIQUE("ERR0010", "Phone number is not Unique"),
+	USER_REGISTRATION_EXCEPTION("ERR0011", "Exception occurred while registring a user");
 	
 	private final String errCode;
 	private final String errMsg;
