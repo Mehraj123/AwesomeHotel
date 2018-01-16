@@ -25,6 +25,7 @@ import com.demo.entity.Review;
 import com.demo.mv.HotelMV;
 import com.demo.service.HotelService;
 import com.demo.successcode.HotelSuccessCode;
+import com.demo.util.Constants;
 import com.demo.util.CustomResponse;
 import com.demo.util.PageableInfo;
 import com.demo.vm.HotelVM;
@@ -35,8 +36,6 @@ public class HotelController {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
 
-	private static final String PAGE_INFO = "pageInfo";
-
 	@Autowired
 	private HotelService hotelService;
 
@@ -45,7 +44,7 @@ public class HotelController {
 		log.info("Enter in getAllHotels()...");
 		PageableInfo<HotelMV> hotels = hotelService.getAll(pageable);
 		Map<String, Object> pageinfo = new HashMap<>(1);
-		pageinfo.put(PAGE_INFO, hotels.getPageInfo());
+		pageinfo.put(Constants.PAGE_INFO, hotels.getPageInfo());
 		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
 				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotels.getContent(), pageinfo), HttpStatus.OK);
 	}
@@ -75,7 +74,7 @@ public class HotelController {
 			Pageable pageable) {
 		PageableInfo<HotelMV> pageableInfo = hotelService.getByMaxPrice(maxPrice, pageable);
 		Map<String, Object> pageInfo = new HashMap<>(1);
-		pageInfo.put(PAGE_INFO, pageableInfo.getPageInfo());
+		pageInfo.put(Constants.PAGE_INFO, pageableInfo.getPageInfo());
 		return new ResponseEntity<>(
 				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
 						HotelSuccessCode.HOTEL_FETCHED.getMessage(), pageableInfo.getContent(), pageInfo),
@@ -141,11 +140,5 @@ public class HotelController {
 				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
 						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getRandom(size), null),
 				HttpStatus.OK);
-	}
-
-	@GetMapping("/cache/clearAllCache/")
-	public ResponseEntity<CustomResponse> clear() {
-		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.clearCache(), null), HttpStatus.OK);
 	}
 }
