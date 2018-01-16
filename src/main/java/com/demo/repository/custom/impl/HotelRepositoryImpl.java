@@ -1,4 +1,4 @@
-package com.demo.repository;
+package com.demo.repository.custom.impl;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +19,8 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import com.demo.entity.Hotel;
 import com.demo.entity.Review;
+import com.demo.repository.CustomAggregation;
+import com.demo.repository.custom.HotelCustomRepository;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.WriteResult;

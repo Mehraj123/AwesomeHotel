@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // @EnableScheduling
 // @PropertySource("file:config.properties")
 // @PropertySource("#{systemEnvironment['LOCATION']}")
-// @EnableEurekaClient
 public class MongoWithBootApplication {
 
 	/*@Value("#{systemEnvironment['LOCATION']}")
