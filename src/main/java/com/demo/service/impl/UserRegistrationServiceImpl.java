@@ -9,7 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.demo.entity.UserRegistration;
@@ -29,14 +30,32 @@ import com.demo.service.UserRegistrationService;
 @Service
 public class UserRegistrationServiceImpl implements UserRegistrationService {
 
-	@Autowired
+	private static final Logger logger = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
+
 	private ModelMapper modelMapper;
 
-	@Autowired
 	private UserRegistrationRepository userRegistrationRepository;
 
 	/*
 	 * @Autowired private PasswordEncoder passwordEncoder;
+	 */
+
+	public UserRegistrationServiceImpl(ModelMapper modelMapper, UserRegistrationRepository userRegistrationRepository) {
+		this.modelMapper = modelMapper;
+		this.userRegistrationRepository = userRegistrationRepository;
+	}
+
+	/**
+	 * Registers a User
+	 * 
+	 * @param userRegistrationVM
+	 *            ViewModel for {@code User}
+	 * @throws USERNAME_NOT_UNIQUE
+	 *             If the username is not unique
+	 * @throws PHONE_NUMBER_NOT_UNIQUE
+	 *             If phone number is not unique
+	 * @throws EMAIL_NOT_UNIQUE
+	 *             If the email is not unique
 	 */
 	@Override
 	public UserRegistrationMV userRegistration(UserRegistrationVM userRegistrationVM) {
@@ -56,26 +75,27 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 			if (userRegistrationRepository.findUserByEmailId(user.getEmail())) {
 				if (userRegistrationRepository.findUserByPhoneNumber(user.getPhoneNumber())) {
 					if (userRegistrationRepository.findUserByUsername(user.getUsername())) {
-
 						UserRegistration userRegistration = userRegistrationRepository.save(user);
-
-						return modelMapper.map(userRegistration, UserRegistrationMV.class);
-
+						UserRegistrationMV registrationMV = modelMapper.map(userRegistration, UserRegistrationMV.class);
+						logger.info("User registration is done for {}", registrationMV.getFullName());
+						return registrationMV;
 					} else {
-
+						logger.info("Username {} is already taken", user.getUsername());
 						throw USERNAME_NOT_UNIQUE.get();
 					}
-
 				} else {
+					logger.info("phone number {} is already taken", user.getPhoneNumber());
 					throw PHONE_NUMBER_NOT_UNIQUE.get();
 				}
-
 			} else {
+				logger.info("Email {} is already taken", user.getEmail());
 				throw EMAIL_NOT_UNIQUE.get();
 			}
-		} catch (CustomParameterizedException exception) {
-			throw exception;
-		} catch (Exception exception) {
+		} catch (CustomParameterizedException e) {
+			logger.error("--- CustomParameterizedException {} ",e);
+			throw e;
+		} catch (Exception e) {
+			logger.error("--- Exception occured while registering user {} ",e);
 			throw USER_REGISTRATION_EXCEPTION.get();
 		}
 	}
