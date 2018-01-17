@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.demo.entity.Hotel;
 import com.demo.repository.HotelRepository;
-
+/***
+ * 
+ * @author Mehraj Malik
+ *
+ */
 @Controller
 public class ViewController {
 	
