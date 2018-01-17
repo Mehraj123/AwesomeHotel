@@ -18,7 +18,7 @@ import com.demo.util.UserConstants;
  * @version 1.0
  *
  */
-public class UserRegistrationImpl implements UserRegistrationCustomRepository {
+public class UserRegistrationRepositoryImpl implements UserRegistrationCustomRepository {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
