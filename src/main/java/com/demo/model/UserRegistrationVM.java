@@ -1,8 +1,8 @@
 package com.demo.model;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.demo.util.ValidationConstant;
@@ -16,21 +16,22 @@ import com.demo.util.ValidationConstant;
  */
 public class UserRegistrationVM {
 
-	@NotBlank(message=ValidationConstant.FIRST_NAME_NOT_BLANK)
-	@Size(min=2, message=ValidationConstant.FIRST_NAME_LENGTH_VIOLATION)
+	@NotBlank(message = ValidationConstant.FIRST_NAME_NOT_BLANK)
+	@Size(min = 2, message = ValidationConstant.FIRST_NAME_LENGTH_VIOLATION)
 	private String firstname;
 	private String lastName;
-	@NotBlank(message=ValidationConstant.USERNAME_NOT_BLANK)
+	@NotBlank(message = ValidationConstant.USERNAME_NOT_BLANK)
 	private String username;
-	@NotBlank(message=ValidationConstant.PASSWD_NOT_BLANK)
-	@Size(min=8, message=ValidationConstant.EMAIL_VALIDATION)
-	//@Pattern(regexp= "^[a-zA-Z][0-9]\\w{8}$")
+	@NotBlank(message = ValidationConstant.PASSWD_NOT_BLANK)
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}", message = ValidationConstant.PASSWORD_STRENGTH)
 	private String password;
-	@NotBlank(message=ValidationConstant.EMAIL_NOT_BLANK)
-	@Email(message=ValidationConstant.EMAIL_VALIDATION)
+	@NotBlank(message = ValidationConstant.EMAIL_NOT_BLANK)
+	// @Email(message=ValidationConstant.EMAIL_VALIDATION)
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = ValidationConstant.EMAIL_VALIDATION)
 	private String email;
-	@NotBlank(message=ValidationConstant.PHONE_NUMBER_NOT_BLANK)
-	@Size(max=10,message=ValidationConstant.PHONE_NUMBER_LENGTH)
+	@NotBlank(message = ValidationConstant.PHONE_NUMBER_NOT_BLANK)
+	@Size(max = 10, message = ValidationConstant.PHONE_NUMBER_LENGTH)
 	private String phoneNumber;
 
 	public String getFirstname() {

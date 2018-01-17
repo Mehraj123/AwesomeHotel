@@ -5,11 +5,11 @@ import static com.demo.error.UserRegistrationExceptionSupplier.PHONE_NUMBER_NOT_
 import static com.demo.error.UserRegistrationExceptionSupplier.USERNAME_NOT_UNIQUE;
 import static com.demo.error.UserRegistrationExceptionSupplier.USER_REGISTRATION_EXCEPTION;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.demo.entity.UserRegistration;
@@ -35,9 +35,9 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	@Autowired
 	private UserRegistrationRepository userRegistrationRepository;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
+	/*
+	 * @Autowired private PasswordEncoder passwordEncoder;
+	 */
 	@Override
 	public UserRegistrationMV userRegistration(UserRegistrationVM userRegistrationVM) {
 
@@ -46,26 +46,36 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 			// set full name
 			user.setFullName(user.getFirstName() + " " + user.getLastName());
-			user.setRegistrationDate(new Date());
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+			user.setRegistrationDate(sdf.format(new Date()));
 			// password encryption
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			/*
+			 * user.setPassword(passwordEncoder.encode(user.getPassword()));
+			 */
 
-			if (!userRegistrationRepository.findUserByEmailId(user.getEmail())) {
+			if (userRegistrationRepository.findUserByEmailId(user.getEmail())) {
+				if (userRegistrationRepository.findUserByPhoneNumber(user.getPhoneNumber())) {
+					if (userRegistrationRepository.findUserByUsername(user.getUsername())) {
+
+						UserRegistration userRegistration = userRegistrationRepository.save(user);
+
+						return modelMapper.map(userRegistration, UserRegistrationMV.class);
+
+					} else {
+
+						throw USERNAME_NOT_UNIQUE.get();
+					}
+
+				} else {
+					throw PHONE_NUMBER_NOT_UNIQUE.get();
+				}
+
+			} else {
 				throw EMAIL_NOT_UNIQUE.get();
 			}
-
-			if (!userRegistrationRepository.findUserByPhoneNumber(user.getPhoneNumber())) {
-				throw PHONE_NUMBER_NOT_UNIQUE.get();
-			}
-
-			if (!userRegistrationRepository.findUserByUsername(user.getUsername())) {
-				throw USERNAME_NOT_UNIQUE.get();
-			}
-
-			UserRegistration userRegistration = userRegistrationRepository.save(user);
-
-			return modelMapper.map(userRegistration, UserRegistrationMV.class);
 		} catch (CustomParameterizedException exception) {
+			throw exception;
+		} catch (Exception exception) {
 			throw USER_REGISTRATION_EXCEPTION.get();
 		}
 	}

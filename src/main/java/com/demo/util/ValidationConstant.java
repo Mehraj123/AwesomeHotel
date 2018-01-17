@@ -12,7 +12,16 @@ public final class ValidationConstant {
 	public static final String EMAIL_NOT_BLANK = "VLD1004";
 	public static final String PHONE_NUMBER_NOT_BLANK = "VLD1005";
 	public static final String EMAIL_VALIDATION = "VLD1006";
-	public static final String PHONE_NUMBER_LENGTH = "VLD1006";
-	public static final String MINIMUM_PASSWORD_LENGTH = "VLD1007";
+	public static final String PHONE_NUMBER_LENGTH = "VLD1007";
+	public static final String MINIMUM_PASSWORD_LENGTH = "VLD1008";
+	/*
+	 *at least 1 lowercase alphabetical character
+	 *at least 1 uppercase alphabetical character
+	 *at least 1 numeric character
+	 *at least one special character 
+	 *must be eight characters or longer
+	 */
+	public static final String PASSWORD_STRENGTH="VLD1009";
+	
 
 }
