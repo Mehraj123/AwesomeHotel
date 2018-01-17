@@ -39,7 +39,7 @@ import com.demo.util.PageableInfo;
 import com.demo.vm.HotelVM;
 
 /**
- * An impementation for {@code HotelService}
+ * An implementation for {@code HotelService}
  * 
  * @author Mehraj Malik
  * @version 1.0
@@ -49,8 +49,6 @@ import com.demo.vm.HotelVM;
 public class HotelServiceImpl implements HotelService {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
-
-	public static final String KEY = "getAllHotels";
 
 	@Autowired
 	private HotelRepository hotelRepository;

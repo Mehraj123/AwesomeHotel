@@ -11,7 +11,8 @@ public enum RegisteredException {
 	UNKNOWN_EXCEPTION("Unknown Exception", "Unknown Exception Occurred"),
 	UNAUTHORIZED_EXCEPTION("Unauthorized exception", "Unauthorized exception Occurred"),
 	HTTP_BODY_EXCEPTION("HttpMessageNotReadableException","Http messgae body is not valid"),
-	HOTEL_EXCEPTION("HotelException","Hotel exception");
+	HOTEL_EXCEPTION("HotelException","Hotel exception"),
+	USER_REGISTRATION_EXCEPTION("UserRegistrationException","User Registration Exception");
 
 	private final String exception;
 	private final String exceptionMessage;
