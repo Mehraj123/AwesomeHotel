@@ -1,7 +1,5 @@
 package com.demo.mv;
 
-import java.util.Date;
-
 /***
  * 
  * Model View for {@code UserRegistration}
@@ -12,15 +10,25 @@ import java.util.Date;
  */
 public class UserRegistrationMV {
 
+	private String id;
 	private String firstname;
 	private String lastName;
 	private String username;
 	private String password;
 	private String email;
 	private String phoneNumber;
-	private Date registrationDate;
+	private String registrationDate;
 	private Boolean isDeleted;
 	private Boolean isBlocked;
+	private String fullName;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getFirstname() {
 		return firstname;
@@ -70,11 +78,11 @@ public class UserRegistrationMV {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Date getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
@@ -92,6 +100,14 @@ public class UserRegistrationMV {
 
 	public void setIsBlocked(Boolean isBlocked) {
 		this.isBlocked = isBlocked;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 }
