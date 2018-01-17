@@ -68,7 +68,7 @@ public class UserRegistrationRepositoryImpl implements UserRegistrationCustomRep
 	public Boolean findUserByUsername(String userName) {
 		Query query = new Query();
 		query.addCriteria(
-				Criteria.where(UserConstants.USER_NAME).regex(Pattern.compile(userName, Pattern.CASE_INSENSITIVE)));
+				Criteria.where(UserConstants.USER_NAME).is(userName));
 		List<UserRegistration> users = mongoTemplate.find(query, UserRegistration.class);
 		if (users.isEmpty()) {
 			return Boolean.TRUE;
