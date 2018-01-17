@@ -1,5 +1,7 @@
 package com.demo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +18,5 @@ import com.demo.repository.custom.UserRegistrationCustomRepository;
 public interface UserRegistrationRepository
 		extends MongoRepository<UserRegistration, String>, UserRegistrationCustomRepository {
 
+	public Optional<UserRegistration> findByUsername(String username);
 }

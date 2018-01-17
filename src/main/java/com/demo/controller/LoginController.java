@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.model.LoginVM;
 import com.demo.service.UserLoginService;
 import com.demo.successcode.UserLoginSuccessCode;
-import com.demo.successcode.UserRegistrationSuccessCode;
 import com.demo.util.CustomResponse;
 
 /***
@@ -33,14 +33,11 @@ public class LoginController {
 	private UserLoginService userLoginService;
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomResponse> userRegistration(@RequestBody @Valid LoginVM loginVM) {
+	public ResponseEntity<CustomResponse> userLogin(@RequestBody @Valid LoginVM loginVM, HttpServletResponse response) {
 
-		/*UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				loginVM.getUsername(), loginVM.getPassword());
-*/
 		return new ResponseEntity<>(
-				new CustomResponse(UserRegistrationSuccessCode.USER_CREATED.getCode(),
-						UserLoginSuccessCode.USER_LOGIN.getMessage(), userLoginService.login(loginVM), null),
+				new CustomResponse(UserLoginSuccessCode.USER_LOGIN.getCode(),
+						UserLoginSuccessCode.USER_LOGIN.getMessage(), userLoginService.login(loginVM, response), null),
 				HttpStatus.OK);
 
 	}

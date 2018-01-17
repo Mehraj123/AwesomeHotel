@@ -14,8 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "User")
 public class UserRegistration {
-	
-    
+
 	@Id
 	private String id;
 	private String firstName;
@@ -28,6 +27,15 @@ public class UserRegistration {
 	private Boolean isBlocked;
 	private String username;
 	private String password;
+
+	public UserRegistration() {
+
+	}
+
+	public UserRegistration(UserRegistration userRegistration) {
+		this.username = userRegistration.getUsername();
+		this.password = userRegistration.getPassword();
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -116,7 +124,5 @@ public class UserRegistration {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
 
 }
