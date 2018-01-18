@@ -1,19 +1,19 @@
 package com.demo.model;
 
+import static com.demo.util.ValidationConstant.EMAIL_NOT_BLANK;
+import static com.demo.util.ValidationConstant.EMAIL_VALIDATION;
+import static com.demo.util.ValidationConstant.FIRST_NAME_LENGTH_VIOLATION;
+import static com.demo.util.ValidationConstant.FIRST_NAME_NOT_BLANK;
+import static com.demo.util.ValidationConstant.PASSWD_NOT_BLANK;
+import static com.demo.util.ValidationConstant.PASSWORD_STRENGTH;
+import static com.demo.util.ValidationConstant.PHONE_NUMBER_LENGTH;
+import static com.demo.util.ValidationConstant.PHONE_NUMBER_NOT_BLANK;
+import static com.demo.util.ValidationConstant.USERNAME_NOT_BLANK;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
-
-import static com.demo.util.ValidationConstant.FIRST_NAME_LENGTH_VIOLATION;
-import static com.demo.util.ValidationConstant.FIRST_NAME_NOT_BLANK;
-import static com.demo.util.ValidationConstant.USERNAME_NOT_BLANK;
-import static com.demo.util.ValidationConstant.PASSWD_NOT_BLANK;
-import static com.demo.util.ValidationConstant.EMAIL_NOT_BLANK;
-import static com.demo.util.ValidationConstant.EMAIL_VALIDATION;
-import static com.demo.util.ValidationConstant.PHONE_NUMBER_NOT_BLANK;
-import static com.demo.util.ValidationConstant.PHONE_NUMBER_LENGTH;
-import static com.demo.util.ValidationConstant.PASSWORD_STRENGTH;
 
 /***
  * Model for User Registration
