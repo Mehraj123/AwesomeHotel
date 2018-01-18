@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.demo.entity.UserRegistration;
@@ -43,13 +44,13 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 	private UserRegistrationRepository userRegistrationRepository;
 
-	/*
-	 * @Autowired private PasswordEncoder passwordEncoder;
-	 */
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public UserRegistrationServiceImpl(ModelMapper modelMapper, UserRegistrationRepository userRegistrationRepository) {
+	public UserRegistrationServiceImpl(ModelMapper modelMapper, UserRegistrationRepository userRegistrationRepository,
+			BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.modelMapper = modelMapper;
 		this.userRegistrationRepository = userRegistrationRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	/**
@@ -75,9 +76,8 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
 			user.setRegistrationDate(sdf.format(new Date()));
 			// password encryption
-			/*
-			 * user.setPassword(passwordEncoder.encode(user.getPassword()));
-			 */
+
+			user.setPassword(bCryptPasswordEncoder.encode(userRegistrationVM.getPassword()));
 
 			if (userRegistrationRepository.findUserByEmailId(user.getEmail())) {
 				if (userRegistrationRepository.findUserByPhoneNumber(user.getPhoneNumber())) {
