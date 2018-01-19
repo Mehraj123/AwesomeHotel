@@ -9,7 +9,8 @@ package com.demo.successcode;
  */
 public enum UserLoginSuccessCode {
 
-	USER_LOGIN("SCS200", "User Login successfully"),;
+	USER_LOGIN("SCS200", "User Login successfully"),
+	USER_FAILED("SCS201", "User Login failed");
 
 	private final String code;
 	private final String message;
