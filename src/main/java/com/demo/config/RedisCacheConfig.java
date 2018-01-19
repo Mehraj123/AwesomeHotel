@@ -1,4 +1,4 @@
-package com.demo.config;
+/*package com.demo.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
@@ -9,11 +9,11 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-/**
+*//**
  * @author Mehraj Malik
  * @version 1.0
  *
- */
+ *//*
 @Configuration
 @EnableCaching
 public class RedisCacheConfig {
@@ -50,10 +50,10 @@ public class RedisCacheConfig {
 		return cacheManager;
 	}
 
-	/**
+	*//**
 	 * To generate custom unique key
-	 */
-	/*@Override
+	 *//*
+	@Override
 	@Bean
 	public KeyGenerator keyGenerator() {
 		return new KeyGenerator() {
@@ -70,6 +70,7 @@ public class RedisCacheConfig {
 				return sb.toString();
 			}
 		};
-	}*/
+	}
 
 }
+*/

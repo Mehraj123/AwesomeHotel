@@ -1,7 +1,5 @@
 package com.demo.entity;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,7 +20,7 @@ public class UserRegistration {
 	private String fullName;
 	private String email;
 	private String phoneNumber;
-	private Date registrationDate;
+	private String registrationDate;
 	private Boolean isDeleted;
 	private Boolean isBlocked;
 	private String username;
@@ -61,11 +59,11 @@ public class UserRegistration {
 		this.fullName = fullName;
 	}
 
-	public Date getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
