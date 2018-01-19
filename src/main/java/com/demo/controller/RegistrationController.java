@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.model.UserRegistrationVM;
 import com.demo.mv.UserRegistrationMV;
 import com.demo.service.UserRegistrationService;
-import com.demo.successcode.UserRegistrationSuccessCode;
-import com.demo.util.Constants;
+import static com.demo.successcode.UserRegistrationSuccessCode.*;
+
+import static com.demo.util.Constants.PAGE_INFO;
 import com.demo.util.CustomResponse;
 import com.demo.util.PageableInfo;
 
@@ -52,10 +53,8 @@ public class RegistrationController {
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomResponse> userRegistration(@RequestBody @Valid UserRegistrationVM userRegistrationVM) {
 
-		return new ResponseEntity<>(new CustomResponse(UserRegistrationSuccessCode.USER_CREATED.getCode(),
-				UserRegistrationSuccessCode.USER_CREATED.getMessage(),
+		return new ResponseEntity<>(new CustomResponse(USER_CREATED.getCode(), USER_CREATED.getMessage(),
 				userRegistrationService.userRegistration(userRegistrationVM), null), HttpStatus.OK);
-
 	}
 
 	/***
@@ -68,10 +67,9 @@ public class RegistrationController {
 		log.info("Enter in getAllUsers()...");
 		PageableInfo<UserRegistrationMV> users = userRegistrationService.getAll(pageable);
 		Map<String, Object> pageinfo = new HashMap<>(1);
-		pageinfo.put(Constants.PAGE_INFO, users.getPageInfo());
+		pageinfo.put(PAGE_INFO, users.getPageInfo());
 		return new ResponseEntity<>(
-				new CustomResponse(UserRegistrationSuccessCode.USER_FETCHED.getCode(),
-						UserRegistrationSuccessCode.USER_FETCHED.getMessage(), users.getContent(), pageinfo),
+				new CustomResponse(USER_FETCHED.getCode(), USER_FETCHED.getMessage(), users.getContent(), pageinfo),
 				HttpStatus.OK);
 	}
 }
