@@ -3,7 +3,6 @@ package com.demo.security.config;
 import static com.demo.util.SecurityConstants.EXPIRATION_TIME;
 import static com.demo.util.SecurityConstants.HEADER_STRING;
 import static com.demo.util.SecurityConstants.SECRET;
-import static com.demo.util.SecurityConstants.SIGN_UP_URL;
 import static com.demo.util.SecurityConstants.TOKEN_PREFIX;
 
 import java.io.IOException;

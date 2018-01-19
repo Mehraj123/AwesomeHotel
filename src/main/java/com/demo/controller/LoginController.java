@@ -26,7 +26,7 @@ import com.demo.util.CustomResponse;
  *
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/authentication")
 public class LoginController {
 
 	@Autowired
