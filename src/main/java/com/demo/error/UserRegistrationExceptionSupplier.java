@@ -31,4 +31,9 @@ public final class UserRegistrationExceptionSupplier {
 			CustomExceptionCode.USER_REGISTRATION_EXCEPTION.getErrMsg(),
 			CustomExceptionCode.USER_REGISTRATION_EXCEPTION.getErrCode());
 
+	public static final Supplier<CustomParameterizedException> USER_FETCHED_EXCEPTION = () -> new CustomParameterizedException(
+			RegisteredException.USER_FETCHED_EXCEPTION.getException(),
+			CustomExceptionCode.USER_FETCHED_EXCEPTION.getErrMsg(),
+			CustomExceptionCode.USER_FETCHED_EXCEPTION.getErrCode());
+
 }

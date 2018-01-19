@@ -1,19 +1,29 @@
 package com.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.model.UserRegistrationVM;
+import com.demo.mv.UserRegistrationMV;
 import com.demo.service.UserRegistrationService;
 import static com.demo.successcode.UserRegistrationSuccessCode.*;
+
+import static com.demo.util.Constants.PAGE_INFO;
 import com.demo.util.CustomResponse;
+import com.demo.util.PageableInfo;
 
 /***
  * 
@@ -23,10 +33,11 @@ import com.demo.util.CustomResponse;
  * @version 1.0
  *
  */
-@RestController
-@RequestMapping("/users")
+@RestController("/users")
 // @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 public class RegistrationController {
+
+	private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
 
 	private UserRegistrationService userRegistrationService;
 
@@ -34,11 +45,31 @@ public class RegistrationController {
 		this.userRegistrationService = userRegistrationService;
 	}
 
+	/***
+	 * @author Iti Gupta
+	 * @param userRegistrationVM
+	 * @return Custom Response
+	 */
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomResponse> userRegistration(@RequestBody @Valid UserRegistrationVM userRegistrationVM) {
 
 		return new ResponseEntity<>(new CustomResponse(USER_CREATED.getCode(), USER_CREATED.getMessage(),
 				userRegistrationService.userRegistration(userRegistrationVM), null), HttpStatus.OK);
+	}
 
+	/***
+	 * @author Iti Gupta
+	 * @param pageable
+	 * @return Custom Response
+	 */
+	@GetMapping
+	public ResponseEntity<CustomResponse> getAllUsers(Pageable pageable) {
+		log.info("Enter in getAllUsers()...");
+		PageableInfo<UserRegistrationMV> users = userRegistrationService.getAll(pageable);
+		Map<String, Object> pageinfo = new HashMap<>(1);
+		pageinfo.put(PAGE_INFO, users.getPageInfo());
+		return new ResponseEntity<>(
+				new CustomResponse(USER_FETCHED.getCode(), USER_FETCHED.getMessage(), users.getContent(), pageinfo),
+				HttpStatus.OK);
 	}
 }

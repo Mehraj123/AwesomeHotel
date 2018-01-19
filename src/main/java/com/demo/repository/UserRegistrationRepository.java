@@ -16,4 +16,7 @@ import com.demo.repository.custom.UserRegistrationCustomRepository;
 public interface UserRegistrationRepository
 		extends MongoRepository<UserRegistration, String>, UserRegistrationCustomRepository {
 
+	//public Optional<UserRegistration> findByUsername(String username);
+	
+	public UserRegistration findByUsername(String username);
 }
