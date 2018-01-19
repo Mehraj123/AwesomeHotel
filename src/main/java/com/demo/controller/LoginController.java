@@ -40,7 +40,7 @@ public class LoginController {
 		 * UsernamePasswordAuthenticationToken( loginVM.getUsername(),
 		 * loginVM.getPassword());
 		 */
-		return new ResponseEntity<>(new CustomResponse(USER_CREATED.getCode(), USER_LOGIN.getMessage(),
+		return new ResponseEntity<>(new CustomResponse(USER_CREATED.getCode(), USER_LOGIN_SUCCESS.getMessage(),
 				userLoginService.login(loginVM), null), HttpStatus.OK);
 
 	}
