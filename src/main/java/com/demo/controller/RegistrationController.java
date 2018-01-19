@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import static com.demo.successcode.UserRegistrationSuccessCode.USER_CREATED;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -7,12 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.model.UserRegistrationVM;
 import com.demo.service.UserRegistrationService;
-import static com.demo.successcode.UserRegistrationSuccessCode.*;
 import com.demo.util.CustomResponse;
 
 /***
@@ -23,8 +23,7 @@ import com.demo.util.CustomResponse;
  * @version 1.0
  *
  */
-@RestController
-@RequestMapping("/users")
+@RestController("/users")
 // @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 public class RegistrationController {
 
