@@ -30,12 +30,12 @@ import com.demo.util.CustomResponse;
 @RestController
 @RequestMapping("/users")
 // @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
-public class RegistrationController {
+public class UserController {
 
 	private UserRegistrationService userRegistrationService;
 	private UserLoginService userLoginService;
 
-	public RegistrationController(UserRegistrationService userRegistrationService, UserLoginService userLoginService) {
+	public UserController(UserRegistrationService userRegistrationService, UserLoginService userLoginService) {
 		this.userRegistrationService = userRegistrationService;
 		this.userLoginService = userLoginService;
 	}
