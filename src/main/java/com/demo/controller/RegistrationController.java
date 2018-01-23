@@ -44,7 +44,7 @@ public class RegistrationController {
 	public RegistrationController(UserRegistrationService userRegistrationService) {
 		this.userRegistrationService = userRegistrationService;
 	}
-
+ 
 	/***
 	 * @author Iti Gupta
 	 * @param userRegistrationVM
