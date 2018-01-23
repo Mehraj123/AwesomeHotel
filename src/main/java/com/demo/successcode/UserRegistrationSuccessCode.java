@@ -12,7 +12,11 @@ public enum UserRegistrationSuccessCode {
 	USER_CREATED("SCS100", "User created successfully"),
 	USER_UPDATED("SCS101", "User updated successfully"),
 	USER_DELETED("SCS102", "User deleted successfully"),
-	USER_FETCHED("SCS103", "User fetched successfully");
+	USER_FETCHED("SCS103", "User fetched successfully"),
+	
+	
+	USER_LOGIN_SUCCESS("SCS200", "User Login successfully"),
+	USER_FAILED("SCS201", "User Login failed");
 	
 	private final String code;
 	private final String message;
