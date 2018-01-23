@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.model.LoginVM;
@@ -38,7 +39,8 @@ import com.demo.util.PageableInfo;
  * @version 1.0
  *
  */
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 // @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 public class UserController {
 
@@ -51,7 +53,7 @@ public class UserController {
 		this.userRegistrationService = userRegistrationService;
 		this.userLoginService = userLoginService;
 	}
- 
+
 	/***
 	 * @author Iti Gupta
 	 * @param userRegistrationVM
@@ -69,7 +71,7 @@ public class UserController {
 	 * @param pageable
 	 * @return Custom Response
 	 */
-	@GetMapping
+	@GetMapping("/get-all")
 	public ResponseEntity<CustomResponse> getAllUsers(Pageable pageable) {
 		log.info("Enter in getAllUsers()...");
 		PageableInfo<UserRegistrationMV> users = userRegistrationService.getAll(pageable);
@@ -80,7 +82,13 @@ public class UserController {
 				HttpStatus.OK);
 	}
 
-	@PostMapping(value="/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	/***
+	 * @author Iti Gupta
+	 * @param loginVM
+	 * @param response
+	 * @return Custom Response
+	 */
+	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomResponse> userLogin(@RequestBody @Valid LoginVM loginVM, HttpServletResponse response) {
 
 		return new ResponseEntity<>(new CustomResponse(USER_LOGIN_SUCCESS.getCode(), USER_LOGIN_SUCCESS.getMessage(),

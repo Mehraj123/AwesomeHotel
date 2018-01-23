@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -52,7 +53,11 @@ public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdap
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().headers().frameOptions().disable().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/authentication").permitAll().and().apply(securityConfigurerAdapter());
+				.antMatchers("/users/login").permitAll()
+				.antMatchers(HttpMethod.POST,"/users").permitAll()
+				.antMatchers("/users/get-all").authenticated()
+				.and()
+				.apply(securityConfigurerAdapter());
 	}
 
 	private JWTConfigurer securityConfigurerAdapter() {
