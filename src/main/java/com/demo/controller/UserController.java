@@ -1,8 +1,11 @@
 package com.demo.controller;
 
+import static com.demo.successcode.UserRegistrationSuccessCode.USER_CREATED;
+import static com.demo.successcode.UserRegistrationSuccessCode.USER_LOGIN_SUCCESS;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.model.LoginVM;
 import com.demo.model.UserRegistrationVM;
 import com.demo.mv.UserRegistrationMV;
+import com.demo.service.UserLoginService;
 import com.demo.service.UserRegistrationService;
 import static com.demo.successcode.UserRegistrationSuccessCode.*;
 
@@ -35,14 +40,16 @@ import com.demo.util.PageableInfo;
  */
 @RestController("/users")
 // @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
-public class RegistrationController {
+public class UserController {
 
-	private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	private UserRegistrationService userRegistrationService;
+	private UserLoginService userLoginService;
 
-	public RegistrationController(UserRegistrationService userRegistrationService) {
+	public UserController(UserRegistrationService userRegistrationService, UserLoginService userLoginService) {
 		this.userRegistrationService = userRegistrationService;
+		this.userLoginService = userLoginService;
 	}
  
 	/***
@@ -51,7 +58,7 @@ public class RegistrationController {
 	 * @return Custom Response
 	 */
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomResponse> userRegistration(@RequestBody @Valid UserRegistrationVM userRegistrationVM) {
+	public ResponseEntity<CustomResponse> registration(@RequestBody @Valid UserRegistrationVM userRegistrationVM) {
 
 		return new ResponseEntity<>(new CustomResponse(USER_CREATED.getCode(), USER_CREATED.getMessage(),
 				userRegistrationService.userRegistration(userRegistrationVM), null), HttpStatus.OK);
@@ -71,5 +78,13 @@ public class RegistrationController {
 		return new ResponseEntity<>(
 				new CustomResponse(USER_FETCHED.getCode(), USER_FETCHED.getMessage(), users.getContent(), pageinfo),
 				HttpStatus.OK);
+	}
+
+	@PostMapping(value="/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomResponse> userLogin(@RequestBody @Valid LoginVM loginVM, HttpServletResponse response) {
+
+		return new ResponseEntity<>(new CustomResponse(USER_LOGIN_SUCCESS.getCode(), USER_LOGIN_SUCCESS.getMessage(),
+				userLoginService.login(loginVM, response), null), HttpStatus.OK);
+
 	}
 }
