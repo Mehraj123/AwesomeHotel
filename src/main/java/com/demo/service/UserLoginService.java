@@ -1,5 +1,7 @@
 package com.demo.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.demo.model.LoginVM;
 
 /***
@@ -11,5 +13,5 @@ import com.demo.model.LoginVM;
  */
 public interface UserLoginService {
 
-	public String login(LoginVM loginVM);
+	public String login(LoginVM loginVM,HttpServletResponse response);
 }
