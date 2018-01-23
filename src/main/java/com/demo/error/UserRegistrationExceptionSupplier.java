@@ -35,5 +35,11 @@ public final class UserRegistrationExceptionSupplier {
 			RegisteredException.USER_FETCHED_EXCEPTION.getException(),
 			CustomExceptionCode.USER_FETCHED_EXCEPTION.getErrMsg(),
 			CustomExceptionCode.USER_FETCHED_EXCEPTION.getErrCode());
+	
+	public static final Supplier<CustomParameterizedException> USER_NOT_FOUND_EXCEPTION = () -> new CustomParameterizedException(
+			RegisteredException.USER_NOT_FOUND_EXCEPTION.getException(),
+			CustomExceptionCode.USER_NOT_FOUND_EXCEPTION.getErrMsg(),
+			CustomExceptionCode.USER_NOT_FOUND_EXCEPTION.getErrCode());
+
 
 }

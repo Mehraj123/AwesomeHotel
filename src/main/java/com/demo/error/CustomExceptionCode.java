@@ -17,7 +17,10 @@ public enum CustomExceptionCode {
 	EMAIL_NOT_UNIQUE("ERR0009", "Email is not Unique"),
 	PHONE_NUMBER_NOT_UNIQUE("ERR0010", "Phone number is not Unique"),
 	USER_REGISTRATION_EXCEPTION("ERR0011", "Exception occurred while registring a user"),
-	USER_FETCHED_EXCEPTION("ERR0012","Exception occurred while fetching the user");
+	USER_FETCHED_EXCEPTION("ERR0012","Exception occurred while fetching the user"),
+	USER_NOT_FOUND_EXCEPTION("ERR0013","Username not found"),
+	LOGIN_EXCEPTION("ERR0014","Exception occurred while login");
+
 	
 	private final String errCode;
 	private final String errMsg;
