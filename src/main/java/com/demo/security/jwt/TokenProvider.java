@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.demo.util.SecurityConstants;
@@ -41,7 +42,12 @@ public class TokenProvider {
 	private String secretKey;
 	private long tokenValidityInMilliseconds;
 
+	private CustomUserDetailsService userDetailsService;
 
+	public TokenProvider(CustomUserDetailsService userDetailsService) {
+		super();
+		this.userDetailsService = userDetailsService;
+	}
 
 	@PostConstruct
 	public void init() {
@@ -54,26 +60,19 @@ public class TokenProvider {
 				.collect(Collectors.joining(","));
 		long now = (new Date()).getTime();
 		Date validity = new Date(now + this.tokenValidityInMilliseconds);
-		
+
 		return Jwts.builder().setSubject(authentication.getName()).claim(AUTHORITIES_KEY, authorities)
 				.signWith(SignatureAlgorithm.HS512, secretKey).setExpiration(validity).compact();
 	}
 
-	
 	public Authentication getAuthentication(String token) {
 		Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-
-		String mobileNumber = claims.get(MOBILE_NO).toString();
-		String userId = claims.get(USER_ID).toString();
-		String newToken = "Bearer " + token;
-
-		Collection<? extends GrantedAuthority> authorities = Arrays
+		/*Collection<? extends GrantedAuthority> authorities = Arrays
 				.stream(claims.get(AUTHORITIES_KEY).toString().split(",")).map(SimpleGrantedAuthority::new)
-				.collect(Collectors.toList());
+				.collect(Collectors.toList());*/
+		UserDetails principal = userDetailsService.loadUserByUsername(claims.getSubject());
 
-		CustomUserDetails principal = new CustomUserDetails(userId, claims.getSubject(), "", mobileNumber, authorities,
-				newToken);
-		return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+		return new UsernamePasswordAuthenticationToken(principal, token);
 	}
 
 	public boolean validateToken(String authToken) {
