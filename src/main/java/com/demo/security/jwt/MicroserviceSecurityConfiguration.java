@@ -51,22 +51,25 @@ public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdap
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().headers().frameOptions().disable().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/users/login").permitAll()
-				.antMatchers(HttpMethod.POST,"/users").permitAll()
-				.antMatchers("/users/get-all").authenticated()
-				.and()
-				.apply(securityConfigurerAdapter());
+		http
+			.csrf()
+			.disable()
+			.headers()
+			.frameOptions().disable()
+		.and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and()
+			.authorizeRequests()
+			.antMatchers("/users/login").permitAll()
+			.antMatchers(HttpMethod.POST,"/users").authenticated()
+			.antMatchers("/users/**").authenticated()
+			.anyRequest().authenticated()
+			.and()
+			.apply(securityConfigurerAdapter());
 	}
 
 	private JWTConfigurer securityConfigurerAdapter() {
 		return new JWTConfigurer(tokenProvider);
 	}
-
-	/*@Bean
-	public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
-		return new SecurityEvaluationContextExtension();
-	}*/
 
 }

@@ -71,7 +71,7 @@ public class UserController {
 	 * @param pageable
 	 * @return Custom Response
 	 */
-	@GetMapping("/get-all")
+	@GetMapping
 	public ResponseEntity<CustomResponse> getAllUsers(Pageable pageable) {
 		log.info("Enter in getAllUsers()...");
 		PageableInfo<UserRegistrationMV> users = userRegistrationService.getAll(pageable);
