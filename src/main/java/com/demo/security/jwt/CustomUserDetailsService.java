@@ -17,7 +17,7 @@ import com.demo.repository.UserRegistrationRepository;
  * @version 1.0
  *
  */
-@Component("userDetailsService")
+@Component
 public class CustomUserDetailsService implements UserDetailsService {
 
 	private UserRegistrationRepository userRegistrationRepository;
