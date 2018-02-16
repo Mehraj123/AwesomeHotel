@@ -1,6 +1,8 @@
 package com.demo.mv;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.demo.entity.Address;
@@ -20,6 +22,22 @@ public class HotelMV implements Serializable {
 	private int pricePerNight;
 	private Address address;
 	private List<Review> reviews;
+
+    public String getRegisteredDateTime() {
+        return registeredDateTime;
+    }
+
+    public void setRegisteredDateTime(LocalDateTime registeredDateTime) {
+        if(registeredDateTime!=null){
+            this.registeredDateTime = registeredDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+        } else {
+            this.registeredDateTime = null;
+        }
+    }
+
+    private String registeredDateTime;
+
+
 
 	public String getId() {
 		return id;

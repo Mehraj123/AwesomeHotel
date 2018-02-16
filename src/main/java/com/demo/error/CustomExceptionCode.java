@@ -6,7 +6,7 @@ package com.demo.error;
  */
 public enum CustomExceptionCode {
 
-	HOTEL_FETCH_EXCEPTION("ERR0001","Exception occured while creating hotel"),
+	HOTEL_FETCH_EXCEPTION("ERR0001","Exception occured while fetching hotel"),
 	HOTEL_SAVE_EXCEPTION("ERR0002","Exception occured while saving hotel"),
 	HOTEL_UPDATE_EXCEPTION("ERR0003","Exception occured while updating hotel"),
 	HOTEL_DELETE_EXCEPTION("ERR0004","Exception occured while deleting hotel"),
