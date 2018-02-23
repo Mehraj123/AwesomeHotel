@@ -104,7 +104,7 @@ public class HotelRepositoryImpl implements HotelCustomRepository {
 		byID.addCriteria(Criteria.where("id").is(hotelId));
 		DBObject value = new BasicDBObject("rating", review.getRating()).append("id", UUID.randomUUID())
 				.append("description", review.getDescription()).append("isApproved", review.getIsApproved())
-				.append("user",
+				.append("demo",
 						new BasicDBObject("id", review.getUser().getId()).append("name", review.getUser().getName()));
 		WriteResult writeResult = mongoOperations.updateFirst(byID, new Update().addToSet("reviews", value),
 				Hotel.class);

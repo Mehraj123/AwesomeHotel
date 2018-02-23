@@ -16,10 +16,11 @@ public enum CustomExceptionCode {
 	USERNAME_NOT_UNIQUE("ERR0008", "User name is not Unique"),
 	EMAIL_NOT_UNIQUE("ERR0009", "Email is not Unique"),
 	PHONE_NUMBER_NOT_UNIQUE("ERR0010", "Phone number is not Unique"),
-	USER_REGISTRATION_EXCEPTION("ERR0011", "Exception occurred while registring a user"),
-	USER_FETCHED_EXCEPTION("ERR0012","Exception occurred while fetching the user"),
+	USER_REGISTRATION_EXCEPTION("ERR0011", "Exception occurred while registring a demo"),
+	USER_FETCHED_EXCEPTION("ERR0012","Exception occurred while fetching the demo"),
 	USER_NOT_FOUND_EXCEPTION("ERR0013","Username not found"),
-	LOGIN_EXCEPTION("ERR0014","Exception occurred while login");
+	LOGIN_EXCEPTION("ERR0014","Exception occurred while login"),
+    TOKEN_EXPIRED("ERR0015", "Token has been expired.");
 
 	
 	private final String errCode;

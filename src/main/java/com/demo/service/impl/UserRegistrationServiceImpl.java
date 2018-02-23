@@ -102,7 +102,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 			logger.error("--- CustomParameterizedException {} ", e);
 			throw e;
 		} catch (Exception e) {
-			logger.error("--- Exception occured while registering user {} ", e);
+			logger.error("--- Exception occured while registering demo {} ", e);
 			throw USER_REGISTRATION_EXCEPTION.get();
 		}
 	}

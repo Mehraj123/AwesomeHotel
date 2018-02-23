@@ -82,6 +82,12 @@ public class UserController {
 				HttpStatus.OK);
 	}
 
+    @GetMapping("/check")
+    public String check() {
+
+       return "Hello";
+    }
+
 	/***
 	 * @author Iti Gupta
 	 * @param loginVM

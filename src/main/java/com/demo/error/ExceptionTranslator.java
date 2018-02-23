@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.jsonwebtoken.JwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,11 +16,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 
 @ControllerAdvice
 public class ExceptionTranslator {
 
 	private static final Logger log = LoggerFactory.getLogger(ExceptionTranslator.class);
+
+    @ExceptionHandler(JwtException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public String processJwtException(JwtException ex) {
+        log.error("JWT Exception :- ", ex);
+        return ex.getMessage();
+    }
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.OK)
@@ -38,9 +49,10 @@ public class ExceptionTranslator {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ParameterizedErrorVM processParameterizedValidationError(CustomParameterizedException ex) {
-		log.error("Custom Exception cought :- ", ex);
+		log.error("Custom Exception caught :- ", ex);
 		return ex.getErrorVM();
 	}
+
 
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody

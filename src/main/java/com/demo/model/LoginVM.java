@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.demo.util.ValidationConstant;
 
 /**
- * View Model object for storing a user's credentials.
+ * View Model object for storing a demo's credentials.
  * 
  * @author Devendra.Kumar
  * @version 1.0

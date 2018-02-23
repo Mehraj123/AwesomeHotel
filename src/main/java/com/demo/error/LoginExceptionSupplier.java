@@ -18,4 +18,8 @@ public final class LoginExceptionSupplier {
 			RegisteredException.LOGIN_NOT_SUCCESSFULL.getException(), CustomExceptionCode.LOGIN_EXCEPTION.getErrMsg(),
 			CustomExceptionCode.LOGIN_EXCEPTION.getErrCode());
 
+    public static final Supplier<CustomParameterizedException> TOKEN_EXPIRED = () -> new CustomParameterizedException(
+            RegisteredException.LOGIN_NOT_SUCCESSFULL.getException(), CustomExceptionCode.TOKEN_EXPIRED.getErrMsg(),
+            CustomExceptionCode.TOKEN_EXPIRED.getErrCode());
+
 }
