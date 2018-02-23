@@ -258,7 +258,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * Provides all the {@code Hotel}s on which a particular user has commented
+	 * Provides all the {@code Hotel}s on which a particular demo has commented
 	 * 
 	 * @param userName
 	 *            UserName of User

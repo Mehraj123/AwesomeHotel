@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Filters incoming requests and installs a Spring Security principal if a header corresponding to a valid user is
+ * Filters incoming requests and installs a Spring Security principal if a header corresponding to a valid demo is
  * found.
  */
 public class JWTFilter extends GenericFilterBean {
@@ -29,7 +29,6 @@ public class JWTFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
         throws IOException, ServletException {
-    	logger.info("In doFilter of JWTFilter");
 		HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 		String jwt = resolveToken(httpServletRequest);
 		if (StringUtils.hasText(jwt) && this.tokenProvider.validateToken(jwt)) {
