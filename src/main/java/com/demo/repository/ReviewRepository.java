@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.demo.entity.Review;
 
 /**
- * @author user
+ * @author demo
  *
  */
 public interface ReviewRepository extends MongoRepository<Review, String>{

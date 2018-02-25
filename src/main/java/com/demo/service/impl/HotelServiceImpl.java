@@ -39,7 +39,7 @@ import com.demo.util.PageableInfo;
 import com.demo.vm.HotelVM;
 
 /**
- * An impementation for {@code HotelService}
+ * An implementation for {@code HotelService}
  * 
  * @author Mehraj Malik
  * @version 1.0
@@ -49,8 +49,6 @@ import com.demo.vm.HotelVM;
 public class HotelServiceImpl implements HotelService {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
-
-	public static final String KEY = "getAllHotels";
 
 	@Autowired
 	private HotelRepository hotelRepository;
@@ -169,6 +167,7 @@ public class HotelServiceImpl implements HotelService {
 			if (getByName(hotelVM.getName()) == null) {
 				hotelVM.setRegisteredDateTime(LocalDateTime.now(ZoneId.systemDefault()));
 				Hotel hotel = hotelRepository.insert(modelMapper.map(hotelVM, Hotel.class));
+				log.info("New hotel with name {} has been added", hotel.getName());
 				return modelMapper.map(hotel, HotelMV.class);
 			}
 			throw HOTELNAME_NOT_UNIQUE_EXCEPTION.get();
@@ -195,7 +194,7 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public Boolean delete(String hotelId) {
 		try {
-
+			log.info("Hotel with id {} has been deleted", hotelId);
 		} catch (Exception e) {
 			throw HOTEL_DELETE_EXCEPTION.get();
 		}
@@ -259,7 +258,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * Provides all the {@code Hotel}s on which a particular user has commented
+	 * Provides all the {@code Hotel}s on which a particular demo has commented
 	 * 
 	 * @param userName
 	 *            UserName of User

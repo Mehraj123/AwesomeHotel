@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,28 +26,30 @@ import com.demo.entity.Review;
 import com.demo.mv.HotelMV;
 import com.demo.service.HotelService;
 import com.demo.successcode.HotelSuccessCode;
+import com.demo.util.Constants;
 import com.demo.util.CustomResponse;
 import com.demo.util.PageableInfo;
 import com.demo.vm.HotelVM;
 
 @RestController
 @RequestMapping("/hotels")
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 public class HotelController {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);
-
-	private static final String PAGE_INFO = "pageInfo";
 
 	@Autowired
 	private HotelService hotelService;
 
 	@GetMapping
 	public ResponseEntity<CustomResponse> getAllHotels(Pageable pageable) {
-		PageableInfo<HotelMV> hotels = hotelService.getAll(pageable);
+		log.info("Enter in getAllHotels()...");
+		throw new  NullPointerException("");
+		/*PageableInfo<HotelMV> hotels = hotelService.getAll(pageable);
 		Map<String, Object> pageinfo = new HashMap<>(1);
-		pageinfo.put(PAGE_INFO, hotels.getPageInfo());
+		pageinfo.put(Constants.PAGE_INFO, hotels.getPageInfo());
 		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotels.getContent(), pageinfo), HttpStatus.OK);
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotels.getContent(), pageinfo), HttpStatus.OK);*/
 	}
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +77,7 @@ public class HotelController {
 			Pageable pageable) {
 		PageableInfo<HotelMV> pageableInfo = hotelService.getByMaxPrice(maxPrice, pageable);
 		Map<String, Object> pageInfo = new HashMap<>(1);
-		pageInfo.put(PAGE_INFO, pageableInfo.getPageInfo());
+		pageInfo.put(Constants.PAGE_INFO, pageableInfo.getPageInfo());
 		return new ResponseEntity<>(
 				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
 						HotelSuccessCode.HOTEL_FETCHED.getMessage(), pageableInfo.getContent(), pageInfo),
@@ -95,7 +98,7 @@ public class HotelController {
 				HttpStatus.OK);
 	}
 
-	@GetMapping("/user/{userName}")
+	@GetMapping("/demo/{userName}")
 	public ResponseEntity<CustomResponse> findByRating(@PathVariable(name = "userName") String userName) {
 		return new ResponseEntity<>(
 				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
@@ -140,11 +143,5 @@ public class HotelController {
 				new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
 						HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.getRandom(size), null),
 				HttpStatus.OK);
-	}
-
-	@GetMapping("/cache/clearAllCache/")
-	public ResponseEntity<CustomResponse> clear() {
-		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotelService.clearCache(), null), HttpStatus.OK);
 	}
 }
