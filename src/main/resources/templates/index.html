@@ -5,15 +5,12 @@
 <meta charset="ISO-8859-1" />
 <title>Hotel Booking</title>
 
-<!-- <script type="text/javascript" src="webjars/jquery/3.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="webjars/bootstrap/4.0.0/css/bootstrap.min.css" /> -->
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <style>
 .jumbotron {
 	background-color: #f4511e;
@@ -39,21 +36,39 @@
 
 	<div class="container">
 		<h2>Please Login</h2>
-		<form th:action="@{/users/login}" method="POST">
+		<form>
 			<div class="form-group">
 				<label for="email">Email:</label> <input type="email"
 					class="form-control" id="username" placeholder="Enter email"
 					name="username"></input>
 			</div>
 			<div class="form-group">
-				<label for="pwd">Password:</label> <input type="password"
+				<label for="password">Password:</label> <input type="password"
 					class="form-control" id="password" placeholder="Enter password"
 					name="password"></input>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary" id="loginBtn" onclick="login()">Submit</button>
 		</form>
 	</div>
 
+	<script>
+	function login(){
+		$.ajax({
+			contentType :"application/json",
+			url:"users/login",
+			cache: false,
+			dataType : "json",
+			type: "POST",
+			data:JSON.stringify( { "username": $('#username').val(), "password": $('#password').val() } ),
+			success:function(data){
+				alert("Success : "+data.message);
+			},
+			error:function(data){
+				alert("Error : "+data.message);
+			}
+		});
+	}
+	</script>
 
 </body>
 </html>
