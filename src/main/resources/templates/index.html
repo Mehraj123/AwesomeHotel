@@ -4,14 +4,51 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Hotel Booking</title>
-<link rel="stylesheet" href="../static/bootstrap.css"
-	th:href="@{/bootstrap.css}" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="webjars/jquery/3.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.0.0/css/bootstrap.min.css" />
+<style>
+.jumbotron {
+	background-color: #f4511e;
+	color: #fff;
+}
+</style>
 </head>
-	<body>
-	<h1>Welcome to the Awesome Hotel</h1>	
-	</body>
+<body>
+
+	<div class="jumbotron text-center">
+		<h1>Awesome Hotel</h1>
+		<p>Give life a break, Come to Nature</p>
+		<!-- 		<form class="form-inline">
+			<div class="input-group">
+				<input type="email" class="form-control" size="50"
+					placeholder="Email Address" required>
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-danger">Subscribe</button>
+				</div>
+			</div>
+		</form> -->
+	</div>
+
+	<div class="container">
+		<h2>Please Login</h2>
+		<form th:action="@{/users/login}" method="POST">
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="email"
+					class="form-control" id="username" placeholder="Enter email"
+					name="username"></input>
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password:</label> <input type="password"
+					class="form-control" id="password" placeholder="Enter password"
+					name="password"></input>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+
+</body>
 </html>

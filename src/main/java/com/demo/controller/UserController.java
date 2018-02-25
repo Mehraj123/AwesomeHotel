@@ -96,7 +96,7 @@ public class UserController {
 	 */
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomResponse> userLogin(@RequestBody @Valid LoginVM loginVM, HttpServletResponse response) {
-
+		System.out.println("---- Called");
 		return new ResponseEntity<>(new CustomResponse(USER_LOGIN_SUCCESS.getCode(), USER_LOGIN_SUCCESS.getMessage(),
 				userLoginService.login(loginVM, response), null), HttpStatus.OK);
 
