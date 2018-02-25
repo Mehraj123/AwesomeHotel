@@ -61,6 +61,7 @@ public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdap
 		.and()
 			.authorizeRequests()
 			.antMatchers("/users/login").permitAll()
+			.antMatchers("/").permitAll()
 			.antMatchers(HttpMethod.POST,"/users").authenticated()
 			.antMatchers("/users/**").authenticated()
 			.anyRequest().authenticated()
