@@ -24,7 +24,7 @@ import com.demo.service.UserLoginService;
 /***
  * Implementation of UserLoginService
  * 
- * @author Devendra.Kumar
+ * @author Mehraj Malik
  * @version 1.0
  *
  */

@@ -72,7 +72,10 @@
 			type: "POST",
 			data:JSON.stringify( { "username": $('#username').val(), "password": $('#password').val() } ),
 			success: function(data, textStatus, request){
+			<!--if(textStatus==success){alert('success');}-->
 				console.log(data);
+				console.log(textStatus);
+				if(textStatus == "success"){	$("#loginSuccess").show();}
 				console.log(request.getResponseHeader('Authorization'));
 			},
 			error: function(data, textStatus, request){
@@ -91,7 +94,10 @@
      var usernameLength = 0;
      var usernameLengthFlag = false;
      var passwordFlag = false;
+
 	$('#username').on('input',function(e){
+	$("#loginFailed").hide();
+	$("#loginSuccess").hide();
 	$("#loginBtn").prop("disabled", "disabled");
 	  usernameLength = $("#username").val().length;
 	  usernameLengthFlag=false;
@@ -104,6 +110,8 @@
         });
 
         $('#password').on('input',function(e){
+        	$("#loginFailed").hide();
+	        $("#loginSuccess").hide();
          passwordFlag = false;
         $("#loginBtn").prop("disabled", "disabled");
 	    password = $("#password").val();
