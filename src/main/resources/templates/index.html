@@ -1,74 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+>
 <head>
-<meta charset="ISO-8859-1" />
-<title>Hotel Booking</title>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-<style>
+    <meta charset="ISO-8859-1"/>
+    <title>Hotel Booking</title>
+    <link rel="shortcut icon" href="#"></link>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <style>
 .jumbotron {
 	background-color: #f4511e;
 	color: #fff;
 }
-</style>
+
+
+
+    </style>
 </head>
 <body>
 
-	<div class="jumbotron text-center">
-		<h1>Awesome Hotel</h1>
-		<p>Give life a break, Come to Nature</p>
-		<!-- 		<form class="form-inline">
-			<div class="input-group">
-				<input type="email" class="form-control" size="50"
-					placeholder="Email Address" required>
-				<div class="input-group-btn">
-					<button type="button" class="btn btn-danger">Subscribe</button>
-				</div>
-			</div>
-		</form> -->
-	</div>
+<div class="jumbotron text-center">
+    <h1>Awesome Hotel</h1>
+    <p>Give life a break, Come to Nature</p>
+    <!-- 		<form class="form-inline">
+        <div class="input-group">
+            <input type="email" class="form-control" size="50"
+                placeholder="Email Address" required>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-danger">Subscribe</button>
+            </div>
+        </div>
+    </form> -->
+</div>
 
-	<div class="container">
-		<h2>Please Login</h2>
-		<form>
-			<div class="form-group">
-				<label for="email">Email:</label> <input type="email"
-					class="form-control" id="username" placeholder="Enter email"
-					name="username"></input>
-			</div>
-			<div class="form-group">
-				<label for="password">Password:</label> <input type="password"
-					class="form-control" id="password" placeholder="Enter password"
-					name="password"></input>
-			</div>
-			<button type="submit" class="btn btn-primary" id="loginBtn" onclick="login()">Submit</button>
-		</form>
-	</div>
+<div class="container">
+    <div class="alert alert-danger" id="loginFailed"><strong>username or password is incorrect</strong></div>
+    <div class="alert alert-success" id="loginSuccess"><strong>Login Success!</strong></div>
+    <h2>Please Login</h2>
+    <form>
+        <div class="form-group">
+            <label for="username">UserName:</label> <input type="text"
+                                                           class="form-control" id="username"
+                                                           placeholder="Enter email or user name"
+                                                           name="username" required="true"></input>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label> <input type="password"
+                                                           class="form-control" id="password"
+                                                           placeholder="Enter password"
+                                                           name="password" required="true"></input>
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
 
-	<script>
-	function login(){
-		$.ajax({
+    </form>
+</div>
+
+<script>
+//<![CDATA[
+
+       $("#loginBtn").click(function(event){
+        event.preventDefault();
+        		$.ajax({
 			contentType :"application/json",
 			url:"users/login",
 			cache: false,
 			dataType : "json",
 			type: "POST",
 			data:JSON.stringify( { "username": $('#username').val(), "password": $('#password').val() } ),
-			success:function(data){
-				alert("Success : "+data.message);
+			success: function(data, textStatus, request){
+				console.log(data);
+				console.log(request.getResponseHeader('Authorization'));
 			},
-			error:function(data){
-				alert("Error : "+data.message);
+			error: function(data, textStatus, request){
+				$("#loginFailed").show();
+				console.log(data);
 			}
 		});
-	}
-	</script>
+       });
 
+	$(function(){
+	$("#loginFailed").hide();
+	$("#loginSuccess").hide();
+	$("#loginBtn").prop("disabled", "disabled");
+        });
+
+     var usernameLength = 0;
+     var usernameLengthFlag = false;
+     var passwordFlag = false;
+	$('#username').on('input',function(e){
+	$("#loginBtn").prop("disabled", "disabled");
+	  usernameLength = $("#username").val().length;
+	  usernameLengthFlag=false;
+	   if(usernameLength>=2){
+	    usernameLengthFlag=true;
+	     if(usernameLengthFlag && passwordFlag ){
+                    $("#loginBtn").removeAttr("disabled");
+                    }
+	   }
+        });
+
+        $('#password').on('input',function(e){
+         passwordFlag = false;
+        $("#loginBtn").prop("disabled", "disabled");
+	    password = $("#password").val();
+	    var passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+	        if(password.length >=8 ){
+	       	    if(passwordRegex.test(password)){
+                    passwordFlag = true;
+                    if(usernameLengthFlag && passwordFlag ){
+                    $("#loginBtn").removeAttr("disabled");
+                    }
+	       	    }
+	        }
+        });
+//]]>
+</script>
 </body>
 </html>
