@@ -1,3 +1,4 @@
+/*
 package com.demo.controller;
 
 import org.springframework.http.HttpStatus;
@@ -17,3 +18,4 @@ public class GlobalExceptionHandlerController {
         return ApiResponse.failure().message(exception.getMessage()).build();
     }
 }
+*/
