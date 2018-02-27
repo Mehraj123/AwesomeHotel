@@ -44,12 +44,11 @@ public class HotelController {
 	@GetMapping
 	public ResponseEntity<CustomResponse> getAllHotels(Pageable pageable) {
 		log.info("Enter in getAllHotels()...");
-		throw new  NullPointerException("");
-		/*PageableInfo<HotelMV> hotels = hotelService.getAll(pageable);
+		PageableInfo<HotelMV> hotels = hotelService.getAll(pageable);
 		Map<String, Object> pageinfo = new HashMap<>(1);
 		pageinfo.put(Constants.PAGE_INFO, hotels.getPageInfo());
 		return new ResponseEntity<>(new CustomResponse(HotelSuccessCode.HOTEL_FETCHED.getCode(),
-				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotels.getContent(), pageinfo), HttpStatus.OK);*/
+				HotelSuccessCode.HOTEL_FETCHED.getMessage(), hotels.getContent(), pageinfo), HttpStatus.OK);
 	}
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

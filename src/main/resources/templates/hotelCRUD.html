@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1" />
+    <link rel="shortcut icon" href="#"></link>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>Hotel Booking</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-hover" id="hotelTable">
+            <thead class="table-success">
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="hotel : ${data}">
+                    <td th:text="${hotel.id}"></td>
+                    <td th:text="${hotel.name}"></td>
+                    <td th:text="${hotel.pricePerNight"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+<script>
+    //<![CDATA[
+
+    $(function () {
+        var token = sessionStorage.getItem("Token");
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend: function (jqXHR, setting) {
+                console.log('Setting Token : ' + token);
+                jqXHR.setRequestHeader("Authorization", token);
+            },
+            type: 'GET',
+            url: '/hotels',
+            success: function (data, textStatus, request) {
+                console.log(data);
+                console.log('Status :' + textStatus);
+                $("#hotelTable").html(data);
+            },
+            error: function (data, textStatus, request) {
+                console.log('Error Data : ' + data);
+                console.log('Error Status : ' + textStatus);
+            }
+        });
+    });
+
+//]]>
+</script>
+
+</html>
