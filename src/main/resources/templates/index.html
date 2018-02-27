@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta charset="ISO-8859-1" />
-<title>Hotel Booking</title>
-<link rel="shortcut icon" href="#"></link>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-<style>
-.jumbotron {
-	background-color: #f4511e;
-	color: #fff;
-}
-</style>
+	<meta charset="ISO-8859-1" />
+	<title>Hotel Booking</title>
+	<link rel="shortcut icon" href="#"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<style>
+		.jumbotron {
+			background-color: #f4511e;
+			color: #fff;
+		}
+	</style>
 </head>
+
 <body>
 
 	<div class="jumbotron text-center">
@@ -43,15 +42,14 @@
 		<h2>Please Login</h2>
 		<form>
 			<div class="form-group">
-				<label for="username">UserName:</label> <input type="text"
-					class="form-control" id="username"
-					placeholder="Enter email or user name" name="username"
-					required="true"></input>
+				<label for="username">UserName:</label>
+				<input type="text" class="form-control" id="username" placeholder="Enter email or user name" name="username"
+				 required="true"></input>
 			</div>
 			<div class="form-group">
-				<label for="password">Password:</label> <input type="password"
-					class="form-control" id="password" placeholder="Enter password"
-					name="password" required="true"></input>
+				<label for="password">Password:</label>
+				<input type="password" class="form-control" id="password" placeholder="Enter password" name="password"
+				 required="true"></input>
 			</div>
 			<button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
 
@@ -61,34 +59,36 @@
 	<script>
 		//<![CDATA[
 
-		$("#loginBtn").click(function(event) {
+		$("#loginBtn").click(function (event) {
 			event.preventDefault();
 			$.ajax({
-				contentType : "application/json",
-				url : "users/login",
-				cache : false,
-				dataType : "json",
-				type : "POST",
-				data : JSON.stringify({
-					"username" : $('#username').val(),
-					"password" : $('#password').val()
+				contentType: "application/json",
+				url: "users/login",
+				cache: false,
+				dataType: "json",
+				type: "POST",
+				data: JSON.stringify({
+					"username": $('#username').val(),
+					"password": $('#password').val()
 				}),
-				success : function(data, textStatus, request) {
+				success: function (data, textStatus, request) {
 					console.log(data);
 					console.log(textStatus);
+					console.log('Received token : ' + request.getResponseHeader('Authorization'))
 					if (textStatus == "success") {
 						$("#loginSuccess").show();
+						sessionStorage.setItem("Token", request.getResponseHeader('Authorization'));
+						window.location.replace("/crud");
 					}
-					console.log(request.getResponseHeader('Authorization'));
 				},
-				error : function(data, textStatus, request) {
+				error: function (data, textStatus, request) {
 					$("#loginFailed").show();
 					console.log(data);
 				}
 			});
 		});
 
-		$(function() {
+		$(function () {
 			$("#loginFailed").hide();
 			$("#loginSuccess").hide();
 			$("#loginBtn").prop("disabled", "disabled");
@@ -98,7 +98,7 @@
 		var usernameLengthFlag = false;
 		var passwordFlag = false;
 
-		$('#username').on('input', function(e) {
+		$('#username').on('input', function (e) {
 			$("#loginFailed").hide();
 			$("#loginSuccess").hide();
 			$("#loginBtn").prop("disabled", "disabled");
@@ -112,24 +112,25 @@
 			}
 		});
 
-		$('#password').on('input',function(e) {
-							$("#loginFailed").hide();
-							$("#loginSuccess").hide();
-							passwordFlag = false;
-							$("#loginBtn").prop("disabled", "disabled");
-							password = $("#password").val();
-							var passwordRegex = new RegExp(
-									'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
-							if (password.length >= 8) {
-								if (passwordRegex.test(password)) {
-									passwordFlag = true;
-									if (usernameLengthFlag && passwordFlag) {
-										$("#loginBtn").removeAttr("disabled");
-									}
-								}
-							}
-						});
+		$('#password').on('input', function (e) {
+			$("#loginFailed").hide();
+			$("#loginSuccess").hide();
+			passwordFlag = false;
+			$("#loginBtn").prop("disabled", "disabled");
+			password = $("#password").val();
+			var passwordRegex = new RegExp(
+				'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+			if (password.length >= 8) {
+				if (passwordRegex.test(password)) {
+					passwordFlag = true;
+					if (usernameLengthFlag && passwordFlag) {
+						$("#loginBtn").removeAttr("disabled");
+					}
+				}
+			}
+		});
 		//]]>
 	</script>
 </body>
+
 </html>
