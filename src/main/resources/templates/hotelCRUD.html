@@ -26,11 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="hotel : ${data}">
-                    <td th:text="${hotel.id}"></td>
-                    <td th:text="${hotel.name}"></td>
-                    <td th:text="${hotel.pricePerNight"></td>
-                </tr>
+
             </tbody>
         </table>
     </div>
@@ -39,29 +35,11 @@
 
 <script>
     //<![CDATA[
-
     $(function () {
         var token = sessionStorage.getItem("Token");
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend: function (jqXHR, setting) {
-                console.log('Setting Token : ' + token);
-                jqXHR.setRequestHeader("Authorization", token);
-            },
-            type: 'GET',
-            url: '/hotels',
-            success: function (data, textStatus, request) {
-                console.log(data);
-                console.log('Status :' + textStatus);
-                $("#hotelTable").html(data);
-            },
-            error: function (data, textStatus, request) {
-                console.log('Error Data : ' + data);
-                console.log('Error Status : ' + textStatus);
-            }
-        });
+        console.log("Fetched Token : " + token);
     });
+
 
 //]]>
 </script>

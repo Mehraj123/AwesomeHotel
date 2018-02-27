@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +32,9 @@ import com.demo.util.CustomResponse;
 import com.demo.util.PageableInfo;
 import com.demo.vm.HotelVM;
 
-@RestController
+@Controller
 @RequestMapping("/hotels")
-@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
+//@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 public class HotelController {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelController.class);

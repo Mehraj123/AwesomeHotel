@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +34,8 @@ import static com.demo.util.Constants.PAGE_INFO;
 
 import com.demo.util.CustomResponse;
 import com.demo.util.PageableInfo;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /***
  *
@@ -42,7 +45,7 @@ import com.demo.util.PageableInfo;
  * @version 1.0
  *
  */
-@RestController
+@Controller
 @RequestMapping("/users")
 // @CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 public class UserController {
@@ -101,9 +104,9 @@ public class UserController {
      */
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CustomResponse> userLogin(@RequestBody @Valid LoginVM loginVM, HttpServletResponse response) {
-        String s = userLoginService.login(loginVM, response);
         return new ResponseEntity<>(new CustomResponse(USER_LOGIN_SUCCESS.getCode(), USER_LOGIN_SUCCESS.getMessage(),
-                s, null), HttpStatus.OK);
+                userLoginService.login(loginVM, response), null), HttpStatus.OK);
 
     }
+
 }
