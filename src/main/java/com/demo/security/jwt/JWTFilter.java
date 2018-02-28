@@ -38,7 +38,9 @@ public class JWTFilter extends GenericFilterBean {
 		try {
 			filterChain.doFilter(servletRequest, servletResponse);
 		} catch (Exception exception) {
-			((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token.");
+			/*((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token.");*/
+            System.out.println("--- JWT Exception has occured : "+exception);
+			throw exception;
 		}
     }
 
