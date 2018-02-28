@@ -43,13 +43,11 @@
 		<form>
 			<div class="form-group">
 				<label for="username">UserName:</label>
-				<input type="text" class="form-control" id="username" placeholder="Enter email or user name" name="username"
-				 required="true"></input>
+				<input type="text" class="form-control" id="username" placeholder="Enter email or user name" name="username" required="true"></input>
 			</div>
 			<div class="form-group">
 				<label for="password">Password:</label>
-				<input type="password" class="form-control" id="password" placeholder="Enter password" name="password"
-				 required="true"></input>
+				<input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required="true"></input>
 			</div>
 			<button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
 
@@ -65,7 +63,6 @@
 				contentType: "application/json",
 				url: "users/login",
 				cache: false,
-				dataType: "json",
 				type: "POST",
 				data: JSON.stringify({
 					"username": $('#username').val(),
@@ -74,16 +71,18 @@
 				success: function (data, textStatus, request) {
 					console.log(data);
 					console.log(textStatus);
-					console.log('Received token : ' + request.getResponseHeader('Authorization'))
 					if (textStatus == "success") {
+						var token = request.getResponseHeader("Authorization");
+						console.log('Token for login : ' + token)
+						sessionStorage.setItem("Token", token)
 						$("#loginSuccess").show();
-						sessionStorage.setItem("Token", request.getResponseHeader('Authorization'));
 						window.location.replace("/crud");
 					}
 				},
 				error: function (data, textStatus, request) {
-					$("#loginFailed").show();
 					console.log(data);
+					console.log('Error Status : ' + textStatus)
+					$("#loginFailed").show();
 				}
 			});
 		});

@@ -28,7 +28,7 @@ public class ExceptionTranslator {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     public String processJwtException(JwtException ex) {
-        log.error("JWT Exception :- ", ex);
+        log.error("JWT Exception#ExceptionTranslator :- ", ex);
         return ex.getMessage();
     }
 
@@ -76,7 +76,7 @@ public class ExceptionTranslator {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ParameterizedErrorVM processException(Exception ex) {
-		log.error("----Unknown Exception :- ", ex);
+		log.error("---- Unknown Exception#ExceptionTranslator :- ", ex);
 		return new ParameterizedErrorVM(RegisteredException.UNKNOWN_EXCEPTION.getException(),
 				RegisteredException.UNKNOWN_EXCEPTION.getExceptionMessage(), Collections.emptyList());
 	}
