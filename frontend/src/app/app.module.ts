@@ -13,7 +13,7 @@ import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
 import { HotelLoginComponent } from './components/hotel-login/hotel-login.component';
 
 const appRoutes : Routes=[
-  {path:'', component:ListHotelComponent}
+  {path:'', component:HotelLoginComponent}
 ];
 
 @NgModule({

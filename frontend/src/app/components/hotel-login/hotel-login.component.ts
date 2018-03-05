@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelLoginComponent implements OnInit {
 
+  private loginSuccess = 1;
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  
+  login(){
+    console.log('Login Clicked');
+  }
 }
