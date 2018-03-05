@@ -10,6 +10,7 @@ import {HotelService} from './servics/hotel.service';
 
 import { ListHotelComponent } from './components/list-hotel/list-hotel.component';
 import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
+import { HotelLoginComponent } from './components/hotel-login/hotel-login.component';
 
 const appRoutes : Routes=[
   {path:'', component:ListHotelComponent}
@@ -19,7 +20,8 @@ const appRoutes : Routes=[
   declarations: [
     AppComponent,
     ListHotelComponent,
-    AddHotelComponent
+    AddHotelComponent,
+    HotelLoginComponent
   ],
   imports: [
     BrowserModule,

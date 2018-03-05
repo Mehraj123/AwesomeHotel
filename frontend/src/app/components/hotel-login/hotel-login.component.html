@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <meta charset="ISO-8859-1" />
+  <title>Hotel Login</title>
+</head>
+<style>
+  .jumbotron {
+    background-color: #f4511e;
+    color: #fff;
+  }
+</style>
+<body>
+  <div class="jumbotron text-center">
+      <h1>Awesome Hotel</h1>
+      <p>Give life a break, Come to Nature</p>
+  </div>
+
+  <div class="container">
+      <div class="alert alert-danger" id="loginFailed">
+        <strong>username or password is incorrect</strong>
+      </div>
+      <div class="alert alert-success" id="loginSuccess">
+        <strong>Login Success!</strong>
+      </div>
+      <h2>Please Login</h2>
+      <form>
+        <div class="form-group">
+          <label for="username">UserName:</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter email or user name" name="username" required="true" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required="true"/>
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+  
+      </form>
+    </div>
+</body>
+</html>
