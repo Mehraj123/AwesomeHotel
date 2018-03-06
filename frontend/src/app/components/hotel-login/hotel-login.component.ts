@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import {LoginVM} from './loginVM';
+import {LoginService} from '../../servics/login.service';
 
 @Component({
   selector: 'app-hotel-login',
@@ -7,14 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelLoginComponent implements OnInit {
 
-  private loginSuccess = 1;
+  private loginSuccess = 0;
+  public loginVM :any=LoginVM;
 
-  constructor() { }
+
+  constructor(private _loginService:LoginService) { }
 
   ngOnInit() {
   }
   
-  login(){
-    console.log('Login Clicked');
+  login(loginForm:NgForm):void{
+    this.loginVM.username = loginForm.value.username;
+    this.loginVM.password = loginForm.value.password
+    console.log('After Called : '+this._loginService.login(this.loginVM));
   }
 }

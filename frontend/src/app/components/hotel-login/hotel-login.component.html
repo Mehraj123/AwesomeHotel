@@ -3,24 +3,29 @@
   <p>Give life a break, Come to Nature</p>
 </div>
 
-<div  class="container">
-  <div *ngIf="loginSuccess==1" class="alert alert-danger" id="loginFailed">
-    <strong>username or password is incorrect</strong>
+<form #loginForm="ngForm" >
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Please Login</h3>
+    <div *ngIf="loginSuccess==1" class="alert alert-danger" id="loginFailed">
+        <strong>username or password is incorrect</strong>
+      </div>
+      <div *ngIf="loginSuccess==2" class="alert alert-success box-msg" id="loginSuccess">
+        <strong>Login Success!</strong>
+      </div>
   </div>
-  <div *ngIf="loginSuccess==2" class="alert alert-success box-msg" id="loginSuccess">
-    <strong>Login Success!</strong>
+  <div class="panel-body">
+    <div class="form-group">
+      <label for="username">Username :</label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control">
+      <label for="password">Password :</label>
+      <input type="text" id="password" name="password" [(ngModel)]="password" class="form-control">
+    </div>
   </div>
-  <h2>Please Login</h2>
-  <form>
-    <div class="form-group">
-      <label for="username">UserName:</label>
-      <input type="text" class="form-control" id="username" placeholder="Enter email or user name" name="username" />
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" />
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
-
-  </form>
+  <div class="panel-footer">
+    <button  (click)="login(loginForm)" type="button" class="btn btn-primary">Login</button>
+  </div>
 </div>
+</form>
+
+{{loginForm.value | json}}
