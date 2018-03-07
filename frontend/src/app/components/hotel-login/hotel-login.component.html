@@ -3,23 +3,23 @@
   <p>Give life a break, Come to Nature</p>
 </div>
 
-<form #loginForm="ngForm" >
+<form>
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3>Please Login</h3>
-    <div *ngIf="loginSuccess==1" class="alert alert-danger" id="loginFailed">
+    <div *ngIf="response.success==false" class="alert alert-danger" id="loginFailed">
         <strong>username or password is incorrect</strong>
       </div>
-      <div *ngIf="loginSuccess==2" class="alert alert-success box-msg" id="loginSuccess">
+      <div *ngIf="response.success==true" class="alert alert-success box-msg" id="loginSuccess">
         <strong>Login Success!</strong>
       </div>
   </div>
   <div class="panel-body">
     <div class="form-group">
       <label for="username">Username :</label>
-      <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control">
+      <input type="text" id="username" name="username" (focus)="hideAlert()" [(ngModel)]="loginVM.username" class="form-control">
       <label for="password">Password :</label>
-      <input type="text" id="password" name="password" [(ngModel)]="password" class="form-control">
+      <input type="text" id="password" name="password" (focus)="hideAlert()" [(ngModel)]="loginVM.password" class="form-control">
     </div>
   </div>
   <div class="panel-footer">
@@ -27,5 +27,5 @@
   </div>
 </div>
 </form>
-
-{{loginForm.value | json}}
+{{loginVM.username}}
+{{loginVM.password}}

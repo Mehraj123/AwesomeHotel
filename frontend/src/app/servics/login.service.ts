@@ -10,24 +10,25 @@ import { HotelLoginComponent } from 'app/components/hotel-login/hotel-login.comp
 
 @Injectable()
 export class LoginService {
+
     private baseURL: string = 'http://localhost:8080/users';
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
     constructor(private _http: Http) { }
 
-    login(vm: LoginVM):any {
+    login(vm: LoginVM) {
         console.log('Login service called : ' + vm.username + ", " + vm.password);
-        this._http.post(this.baseURL + '/login', 
+       return this._http.post(this.baseURL + '/login', 
         {
             "username":vm.username,
-            "password" :vm.password
+            "password" : vm.password
         }
-        ,this.options).subscribe(data => {
-            console.log('Sub : '+data);
-            return data;
-        }, error => {
-            console.log(JSON.stringify(error.json()));
-        });
+        ,this.options)
+        .map((response:Response)=>response.json())
+        .catch(this.errorHandler);
     }
 
+    errorHandler(error:Response){
+        return Observable.throw(error||"SERVER ERROR LoginService"); 
+      }
 }

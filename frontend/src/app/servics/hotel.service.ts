@@ -29,8 +29,6 @@ export class HotelService {
     return Observable.throw(error||"SERVER ERROR"); 
   }
 
- 
-
   updateHotel(){
 
   }

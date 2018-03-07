@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
-import {LoginVM} from './loginVM';
-import {LoginService} from '../../servics/login.service';
+import { LoginVM } from './loginVM';
+import { LoginService } from '../../servics/login.service';
+import { Response } from '../../Response';
 
 @Component({
   selector: 'app-hotel-login',
@@ -11,17 +12,31 @@ import {LoginService} from '../../servics/login.service';
 export class HotelLoginComponent implements OnInit {
 
   private loginSuccess = 0;
-  public loginVM :any=LoginVM;
+  public loginVM: LoginVM = new LoginVM();
+  private response: Response = new Response();
+  public show:boolean=false;
 
-
-  constructor(private _loginService:LoginService) { }
+  constructor(private _loginService: LoginService) { }
 
   ngOnInit() {
   }
-  
-  login(loginForm:NgForm):void{
-    this.loginVM.username = loginForm.value.username;
-    this.loginVM.password = loginForm.value.password
-    console.log('After Called : '+this._loginService.login(this.loginVM));
+
+  login(loginForm: NgForm) {
+    this.show=true;
+    console.log('UserName : ' + this.loginVM.username);
+    console.log('UserName : ' + this.loginVM.password);
+    this._loginService.login(this.loginVM)
+      .subscribe((response) => {
+        this.response = <Response>response;
+      }, (error) => {
+        console.log(error);
+        this.response.success=false;
+      });
+  }
+
+  hideAlert(){
+    if(this.show)
+    this.response.success=null;
+    console.log('Clicked')
   }
 }
