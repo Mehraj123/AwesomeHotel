@@ -24,7 +24,7 @@ export class LoginService {
             "password" : vm.password
         }
         ,this.options)
-        .map((response:Response)=>response.json())
+        .map((response:Response)=>response)
         .catch(this.errorHandler);
     }
 

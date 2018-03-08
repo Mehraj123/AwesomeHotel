@@ -20,7 +20,8 @@ public enum CustomExceptionCode {
 	USER_FETCHED_EXCEPTION("ERR0012","Exception occurred while fetching the demo"),
 	USER_NOT_FOUND_EXCEPTION("ERR0013","Username not found"),
 	LOGIN_EXCEPTION("ERR0014","Exception occurred while login"),
-    TOKEN_EXPIRED("ERR0015", "Token has been expired.");
+    TOKEN_EXPIRED("ERR0015", "Token has been expired."),
+    AUTHENTICATION_FAILED("ERR0016", "Authentication failed.");
 
 	
 	private final String errCode;

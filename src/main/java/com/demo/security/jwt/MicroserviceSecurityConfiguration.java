@@ -21,55 +21,58 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-	private final TokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
-	private final UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-	public MicroserviceSecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder,
-			TokenProvider tokenProvider, UserDetailsService userDetailsService) {
-		super();
-		this.authenticationManagerBuilder = authenticationManagerBuilder;
-		this.tokenProvider = tokenProvider;
-		this.userDetailsService = userDetailsService;
-	}
+    public MicroserviceSecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder,
+                                             TokenProvider tokenProvider, UserDetailsService userDetailsService) {
+        super();
+        this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.tokenProvider = tokenProvider;
+        this.userDetailsService = userDetailsService;
+    }
 
-	@PostConstruct
-	public void init() {
-		try {
-			authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		} catch (Exception e) {
-			throw new BeanInitializationException("Security configuration failed", e);
-		}
-	}
+    @PostConstruct
+    public void init() {
+        try {
+            authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        } catch (Exception e) {
+            throw new BeanInitializationException("Security configuration failed", e);
+        }
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.csrf()
-			.disable()
-			.headers()
-			.frameOptions().disable()
-		.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-			.authorizeRequests()
-			.antMatchers("/users/login").permitAll()
-			.antMatchers(HttpMethod.POST,"/users").authenticated()
-			.antMatchers("/users/**").authenticated()
-			.anyRequest().authenticated()
-			.and()
-			.apply(securityConfigurerAdapter());
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf()
+                .disable()
+                .headers()
+                .frameOptions().disable()
+                .and()
+                // https://docs.spring.io/spring-security/site/docs/current/reference/html/cors.html
+                .cors()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/users/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").authenticated()
+                .antMatchers("/users/**").authenticated()
+                .anyRequest().authenticated()
+                .and()
+                .apply(securityConfigurerAdapter());
+    }
 
-	private JWTConfigurer securityConfigurerAdapter() {
-		return new JWTConfigurer(tokenProvider);
-	}
+    private JWTConfigurer securityConfigurerAdapter() {
+        return new JWTConfigurer(tokenProvider);
+    }
 
 }

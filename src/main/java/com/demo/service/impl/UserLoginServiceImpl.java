@@ -2,14 +2,17 @@ package com.demo.service.impl;
 
 import static com.demo.error.LoginExceptionSupplier.LOGIN_NOT_SUCCESSFULL;
 import static com.demo.error.UserRegistrationExceptionSupplier.USER_NOT_FOUND_EXCEPTION;
+import static com.demo.error.LoginExceptionSupplier.AUTHENTICATION_FAILED_EXCEPTION;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -59,21 +62,26 @@ public class UserLoginServiceImpl implements UserLoginService {
 				Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 
-				log.info("Login Successfull :)");
+				log.info("LOGIN SUCCESSFUL !");
 				String jwt = tokenProvider.createToken(authentication);
 				response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
 				response.addHeader("Access-Control-Expose-Headers", "Authorization");
 
-				return "Login Successfull :)";
+				return "LOGIN SUCCESSFUL !";
 
 			} else {
 				throw USER_NOT_FOUND_EXCEPTION.get();
 			}
 		} catch (CustomParameterizedException e) {
+		    log.error("User not found {} ", loginVM.getUsername());
 			throw e;
-		} catch (Exception e) {
-			throw LOGIN_NOT_SUCCESSFULL.get();
-		}
+		} catch (AuthenticationException e) {
+            log.error("Authentication failed for the user {}", loginVM.getUsername());
+			throw AUTHENTICATION_FAILED_EXCEPTION.get();
+		}catch (Exception e) {
+            log.error("Exception occurred while fetching the user {}  from DB ", loginVM.getUsername());
+            throw LOGIN_NOT_SUCCESSFULL.get();
+        }
 
 	}
 }

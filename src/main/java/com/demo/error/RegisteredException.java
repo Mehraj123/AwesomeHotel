@@ -15,7 +15,8 @@ public enum RegisteredException {
 	USER_REGISTRATION_EXCEPTION("UserRegistrationException","User Registration Exception"),
 	USER_FETCHED_EXCEPTION("UserFetchedException","Exception occurred while fetching the demo"),
 	USER_NOT_FOUND_EXCEPTION("UserNotFoundException","User is not Registered"),
-	LOGIN_NOT_SUCCESSFULL("LoginException","Exception occurred while login");
+	LOGIN_NOT_SUCCESSFULL("LoginException","Exception occurred while login"),
+    AUTHENTICATION_FAILED("LoginException","Authentication failed");
 
 	private final String exception;
 	private final String exceptionMessage;
