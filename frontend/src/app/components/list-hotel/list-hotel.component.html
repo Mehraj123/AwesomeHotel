@@ -1,8 +1,9 @@
-<div>
-  <add-hotel></add-hotel>
-</div>
-
 <div class="container">
+        <div class="page-header">
+                <br>
+                <button type="button" class="btn btn-outline-success btn-block" (click)="createNewHotel()">Add new Hotel</button>
+                <br>
+            </div>
     <table class="table table-hover">
         <thead >
           <tr class="bg-success text-white">
@@ -18,9 +19,9 @@
               <td>{{hotel.name}}</td>
               <td>{{hotel.pricePerNight}}</td>
               <td>
-                  <a class="btn btn-small btn-info" href="#">
+                  <a class="btn btn-small btn-info" (click)="updateHotel(hotel)">
                       <i class="fa fa-pencil fa-fw"></i></a>
-                <a class="btn btn-small btn-danger" href="#" (click)="deleteHotel(hotel)">
+                <a class="btn btn-small btn-danger" (click)="deleteHotel(hotel)">
                     <i class="fa fa-trash-o"></i></a>
                 </td>
           </tr>

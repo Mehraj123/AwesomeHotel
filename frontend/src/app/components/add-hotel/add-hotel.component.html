@@ -1,5 +1,19 @@
-<div class="page-header">
-    <br>
-    <button type="button" class="btn btn-outline-success btn-block">Add new Hotel</button>
-    <br>
+<div class="container">
+        <form>
+                <label for="hotelName">Hotel Name :</label>
+                <input type="text" id="hotelName" name="hotelName"  [(ngModel)]="hotel.name" class="form-control">
+                <label for="ppn">Price Per Night :</label>
+                <input type="text" id="ppn" name="ppn"  [(ngModel)]="hotel.pricePerNight" class="form-control">
+                <label for="city">City :</label>
+                <input type="text" id="city" name="city"  [(ngModel)]="hotel.address.city" class="form-control">
+                <label for="country">Country :</label>
+                <input type="text" id="country" name="country"  [(ngModel)]="hotel.address.country" class="form-control">
+                <br>
+                <button type="button" class="btn btn-primary" (click)="createNewHotel()">Submit</button>
+        </form>
 </div>
+
+Name : {{hotel.name}}
+PPN : {{hotel.pricePerNight}}
+City : {{hotel.address.city}}
+Country : {{hotel.address.country}}

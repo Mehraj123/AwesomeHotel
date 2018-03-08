@@ -65,7 +65,6 @@ public class HotelServiceImpl implements HotelService {
 	 *             If something went wrong while fetching data from DB
 	 * @return {@code List<HotelMV>}
 	 */
-	@Cacheable(value = "Hotel", key = "#root.methodName")
 	@Override
 	public PageableInfo<HotelMV> getAll(Pageable pageable) {
 		try {
@@ -85,7 +84,6 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	@CacheEvict(value = "Hotel", key = "getAll", allEntries = true)
 	public Boolean clearCache() {
 		return true;
 	}
@@ -100,7 +98,6 @@ public class HotelServiceImpl implements HotelService {
 	 * @throws HOTEL_FETCH_EXCEPTION
 	 *             If something went wrong while fetching data from DB
 	 */
-	@Cacheable(value = "Hotel", key = "#hotelId")
 	@Override
 	public HotelMV getById(String hotelId) {
 		try {
@@ -178,7 +175,6 @@ public class HotelServiceImpl implements HotelService {
 		}
 	}
 
-	@CachePut(value = "Hotel", key = "#hotelVM.id")
 	@Override
 	public HotelMV update(HotelVM hotelVM) {
 		try {

@@ -15,7 +15,8 @@ import { HotelLoginComponent } from './components/hotel-login/hotel-login.compon
 
 const appRoutes : Routes=[
   {path:'', component:HotelLoginComponent},
-  {path:'hotels', component:ListHotelComponent}
+  {path:'hotels', component:ListHotelComponent},
+  {path:'createHotel', component:AddHotelComponent}
 ];
 
 @NgModule({

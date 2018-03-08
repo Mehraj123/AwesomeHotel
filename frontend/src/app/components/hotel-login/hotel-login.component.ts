@@ -42,6 +42,5 @@ export class HotelLoginComponent implements OnInit {
   hideAlert(){
     if(this.show)
     this.response.success=null;
-    console.log('Clicked')
   }
 }

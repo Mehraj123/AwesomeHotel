@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 import {HotelService} from '../../servics/hotel.service';
 import {Hotel} from '../../hotel'; 
 import { error } from 'util';
@@ -12,12 +13,11 @@ export class ListHotelComponent implements OnInit {
 
   private hotels : Hotel[];
 
-  constructor(private _hotelService:HotelService) { }
+  constructor(private _hotelService:HotelService,public router: Router) { }
 
   ngOnInit() {
     this._hotelService.getHotels().subscribe((hotels)=>{
           this.hotels=hotels.data;
-          console.log(hotels);
     }, (error)=>{
       console.log(error);
     }) 
@@ -32,4 +32,12 @@ export class ListHotelComponent implements OnInit {
     })
   }
 
+  updateHotel(hotel:Hotel){
+    console.log(hotel)
+  }
+
+  createNewHotel(){
+    console.log('Creating new hotel');
+    this.router.navigate(['createHotel']);
+  }
 }
