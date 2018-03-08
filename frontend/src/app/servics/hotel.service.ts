@@ -10,20 +10,18 @@ import 'rxjs/add/observable/throw';
 export class HotelService {
   private baseURL : string='http://localhost:8080'; 
   private headers = new Headers({'Content-Type':'application/json'});
+  private options = new RequestOptions({headers:this.headers});
   constructor(private _http:Http) { }
 
   getHotels(){
     this.headers.append('Authorization',localStorage.getItem('Token'));
-    console.log('Get Tokan calling backend '+localStorage.getItem('Token'));
-    let options = new RequestOptions({headers:this.headers});
-    console.log(options.headers);
-    return this._http.get(this.baseURL+'/hotels', options)
+    return this._http.get(this.baseURL+'/hotels', this.options)
     .map((response:Response)=>response.json())
     .catch(this.errorHandler);
   }
 
   deleteHotel(id:string){
-    return this._http.delete(this.baseURL+'/hotels/'+id)
+    return this._http.delete(this.baseURL+'/hotels/'+id, this.options)
     .map((response:Response)=>response.json())
     .catch(this.errorHandler);
   }

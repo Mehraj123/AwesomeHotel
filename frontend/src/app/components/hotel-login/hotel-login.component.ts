@@ -22,9 +22,6 @@ export class HotelLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Get Tokan ngOnInit '+localStorage.getItem('Token'));
-    localStorage.clear();
-    console.log('Get Tokan ngOnInit '+localStorage.getItem('Token'));
   }
 
   login(loginForm: NgForm) {
@@ -33,11 +30,8 @@ export class HotelLoginComponent implements OnInit {
     console.log('UserName : ' + this.loginVM.password);
     this._loginService.login(this.loginVM)
       .subscribe((response) => {
-        console.log('Received token after calling login UI : '+response.headers.get('authorization'));
         localStorage.setItem('Token',response.headers.get('authorization'));
-        console.log('Get Tokan after setting '+localStorage.getItem('Token'));
         this.response = <Response>response;
-        console.log(response);
         this.router.navigate(['hotels']);
       }, (error) => {
         console.log(error);

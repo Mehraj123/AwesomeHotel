@@ -17,7 +17,6 @@ export class LoginService {
     constructor(private _http: Http) { }
 
     login(vm: LoginVM) {
-        console.log('Login service called : ' + vm.username + ", " + vm.password);
        return this._http.post(this.baseURL + '/login', 
         {
             "username":vm.username,

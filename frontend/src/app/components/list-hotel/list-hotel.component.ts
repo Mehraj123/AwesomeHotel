@@ -15,7 +15,6 @@ export class ListHotelComponent implements OnInit {
   constructor(private _hotelService:HotelService) { }
 
   ngOnInit() {
-    console.log('Token ListHotelComponent B4 : '+localStorage.getItem("Token"));
     this._hotelService.getHotels().subscribe((hotels)=>{
           this.hotels=hotels.data;
           console.log(hotels);
